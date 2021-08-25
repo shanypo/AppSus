@@ -17,13 +17,17 @@ export class MailPreview extends React.Component {
     this.setState({ mail });
   }
 
+  onCheck = (ev) => {
+    ev.stopPropagation();
+  }
+
   render() {
     const { mail } = this.state;
     if (!mail) return <div></div>
     return (
-      <Link to={`/mail/${mail.id}`} className="">
+      <Link to={`/mail/${mail.id}`}>
       <article className={'mail-preview'}>
-        <input type="checkbox"></input>
+        <input type="checkbox" onClick={this.onCheck}></input>
         <p>{mail.from}</p>
         <LongTxt body={mail.body} />
         <p>{mail.sentAt}</p>

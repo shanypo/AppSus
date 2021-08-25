@@ -1,7 +1,9 @@
 
 export const mailService = {
     getEmails,
-    getMailById
+    getMailById,
+    deleteMail,
+    getCriteria
 }
 
 const gMails = [
@@ -41,10 +43,15 @@ const loggedinUser = {
 const criteria = {
     status: 'inbox/sent/trash/draft',
     txt: 'puki', // no need to support complex text search
-    isRead: true,
+    isRead: false,
     // (optional property, if missing: show all)
-    isStared: true, // (optional property, if missing: show all)
+    isStared: false, // (optional property, if missing: show all)
     lables: ['important', 'romantic'] // has any of the labels
+}
+
+function getCriteria() {
+    return Promise.resolve(criteria);
+
 }
 
 // function query(criteria) {
@@ -63,4 +70,12 @@ function getMailById(mailId){
         return mailId === mail.id;
     })
     return Promise.resolve(mail);
+}
+
+function deleteMail(mailId) {
+    var mailIdx = gMails.findIndex(function (mail) {
+        return mailId === mail.id
+    })
+    gMails.splice(mailIdx, 1)
+    return Promise.resolve()
 }
