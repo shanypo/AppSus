@@ -1,0 +1,23 @@
+/* BASE SETUP */
+
+@import './parts/base.css';
+@import './parts/fonts.css';
+@import './parts/helpers.css';
+/* PAGES */
+
+/* HOME */
+
+/* COMPONENTS */
+
+/* NOTES */
+
+@import './apps/pages/notes.css';
+/* COMPONENTS */
+
+/* MAIL */
+
+/* COMPONENTS */
+
+/* BOOKS */
+
+/* COMPONENTS */
