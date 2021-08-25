@@ -4,12 +4,12 @@ export const mailService = {
     getEmails,
     getMailById,
     deleteMail,
-    getCriteria,
     toggelRead,
     onRead
 }
 
-const gMails = [
+let gMails;
+let gDummyMails = [
     {
         id: 'e101',
         from: 'Google',
@@ -53,15 +53,13 @@ const criteria = {
     lables: ['important', 'romantic'] // has any of the labels
 }
 
-function getCriteria() {
-    return Promise.resolve(criteria);
-}
-
 function onRead(mailId){
+    console.log(mailId);
     getMailById(mailId)
     .then(mail => {
         mail.isRead = true;
     })
+    console.log(gMails);
     saveMails();
 }
 
@@ -78,10 +76,14 @@ function saveMails() {
 }
 
 function getEmails() {
+    const storageMails = _loadFromStorage();
+    gMails = storageMails ? storageMails : gDummyMails;
+    saveMails();
     return Promise.resolve(gMails);
 }
 
 function getMailById(mailId) {
+    gMails = _loadFromStorage();
     var mail = gMails.find(function (mail) {
         return mailId === mail.id;
     })
@@ -94,4 +96,8 @@ function deleteMail(mailId) {
     })
     gMails.splice(mailIdx, 1)
     return Promise.resolve()
+}
+
+function _loadFromStorage() {
+    return storageService.loadFromStorage(KEY);
 }

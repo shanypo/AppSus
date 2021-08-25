@@ -39,6 +39,7 @@ export class MailDetails extends React.Component {
     onRead = () => {
         const { mail } = this.state;
         mailService.onRead(mail.id);
+        console.log(mail);
     }
 
     render() {

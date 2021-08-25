@@ -14,15 +14,17 @@ export class MailApp extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadMails();
     }
 
     loadMails() {
         mailService.getEmails()
             .then((mails) => {
-                this.setState({mails})
+                this.setState({ mails })
+                console.log(mails);
             })
+
     }
 
     onSetFilter = (criteria) => {
@@ -30,11 +32,11 @@ export class MailApp extends React.Component {
     }
 
     render() {
-        const {mails, criteria} = this.state;
-        if(!mails) return <div>Loading...</div>;
+        const { mails, criteria } = this.state;
+        if (!mails) return <div>Loading...</div>;
         return (
             <section>
-                <MailList mails={mails} criteria={criteria}/>
+                <MailList mails={mails} criteria={criteria} />
                 <MailFilter filter={criteria} onSetFilter={this.onSetFilter} />
             </section>
         )
