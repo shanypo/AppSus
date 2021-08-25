@@ -1,6 +1,13 @@
 .mail-preview{
-    background-color: antiquewhite;
+    background-color: white;
     display: flex;
+    border-bottom: 1px solid lightgrey;
     justify-content: space-between;
     padding: 0 24px;
+    font-weight: bold;
+    color: rgb(57, 56, 56);
+}
+
+.mail-readen{
+    font-weight: unset;
 }

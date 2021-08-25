@@ -1,39 +1,43 @@
+import { storageService } from '../../../services/storage.service.js';
 
 export const mailService = {
     getEmails,
     getMailById,
     deleteMail,
-    getCriteria
+    getCriteria,
+    toggelRead,
+    onRead
 }
 
 const gMails = [
     {
-    id: 'e101',
-    from:'Google',
-    subject: 'Miss you',
-    body: 'hello there',
-    isRead: false,
-    sentAt : new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
-},
-{
-    id: 'e102',
-    from:'Google',
-    subject: 'AIG just for you',
-    body: 'get your car insurance',
-    isRead: false,
-    sentAt : new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
-    to: 'shanypo@gmail.com'
-},
-{
-    id: 'e103',
-    from:'Google',
-    subject: 'working together',
-    body: 'hello there',
-    isRead: false,
-    sentAt : new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
-    to: 'shanypo@gmail.com'
-},
+        id: 'e101',
+        from: 'Google',
+        subject: 'Miss you',
+        body: 'hello there',
+        isRead: false,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+    },
+    {
+        id: 'e102',
+        from: 'Google',
+        subject: 'AIG just for you',
+        body: 'get your car insurance',
+        isRead: false,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'shanypo@gmail.com'
+    },
+    {
+        id: 'e103',
+        from: 'Google',
+        subject: 'working together',
+        body: 'hello there',
+        isRead: false,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'shanypo@gmail.com'
+    },
 ]
+const KEY = 'mailDB';
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -51,21 +55,33 @@ const criteria = {
 
 function getCriteria() {
     return Promise.resolve(criteria);
-
 }
 
-// function query(criteria) {
-//     if (criteria) {
-//         const {status, txt, isRead, isStared, lables} = criteria;
-        
-//     }
-// }
+function onRead(mailId){
+    getMailById(mailId)
+    .then(mail => {
+        mail.isRead = true;
+    })
+    saveMails();
+}
 
-function getEmails(){
+function toggelRead(mailId) {
+    getMailById(mailId)
+    .then(mail => {
+        mail.isRead = !mail.isRead;
+    })
+    saveMails();
+}
+
+function saveMails() {
+    storageService.saveToStorage(KEY, gMails);
+}
+
+function getEmails() {
     return Promise.resolve(gMails);
 }
 
-function getMailById(mailId){
+function getMailById(mailId) {
     var mail = gMails.find(function (mail) {
         return mailId === mail.id;
     })

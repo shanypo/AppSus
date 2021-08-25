@@ -9,7 +9,6 @@ export class MailDetails extends React.Component {
 
     componentDidMount() {
         this.loadMail();
-        this.onRead();
     }
 
     componentDidUpdate(prevProps) {
@@ -38,23 +37,14 @@ export class MailDetails extends React.Component {
     }
 
     onRead = () => {
-        mailService.getCriteria(this.state.criteria)
-            .then(criteria => {
-                this.setState({ criteria }, () => {
-                    this.markRead();
-                })
-            })
-    }
-
-    markRead = () => {
-        this.setState(({ criteria }) => ({
-            criteria: { ...criteria, isRead: true }
-        }))
+        const { mail } = this.state;
+        mailService.onRead(mail.id);
     }
 
     render() {
         const { mail } = this.state;
         if (!mail) return <div>Loading...</div>
+        this.onRead();
         return (
             <article className={'mail-details'}>
                 <button onClick={this.onBack}>Go Back</button>
