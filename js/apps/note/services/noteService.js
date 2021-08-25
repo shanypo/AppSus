@@ -1,7 +1,7 @@
 
 export const noteService = {
     query,
-    // saveCar,
+    updateNoteTodo
     // deleteCar,
     // getCarById,
     // getNextCarId
@@ -41,7 +41,6 @@ let gNotes = [
 ];
 
 
-
 function query() {
     // if (filterBy) {
     //     let { vendor, minSpeed, maxSpeed } = filterBy
@@ -55,4 +54,18 @@ function query() {
     //     return Promise.resolve(carsToShow)
     // }
     return Promise.resolve(gNotes)
+}
+
+function getNoteIdxById(noteId) {
+    return gNotes.findIndex(function (note) {
+        return noteId === note.id
+    })
+}
+
+
+function updateNoteTodo(noteId, todoIdx, newTodo) {
+    const noteIdx = getNoteIdxById(noteId)
+    gNotes[noteIdx].info.todos[todoIdx] = newTodo;
+    // _saveCarsToStorage();
+    return Promise.resolve()
 }
