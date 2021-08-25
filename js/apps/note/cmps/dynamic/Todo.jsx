@@ -1,25 +1,20 @@
-// {
-//     id: "n103",
-//         type: "todos",
-//             info: {
-//         label: "Get my stuff together",
-//             todos: [
-//                 { txt: "Driving liscence", doneAt: null },
-//                 { txt: "Coding power", doneAt: 187111111 }
-//             ]
-//     }
-// }
 
+export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt: null }
+    state = {
+        todo: this.props.todo
+    }
+    onDone = () => {
+        let { todo } = this.state;
+        todo.doneAt = todo.doneAt ? null : new Date().toLocaleString()
+        this.setState({ todo })
+    }
+    render() {
+        const todo = this.state.todo
+        return (
+            <p onClick={() => { this.onDone() }} className={todo.doneAt ? 'done' : ''} >
+                {todo.txt}
+            </p >
+        )
+    }
 
-// <input type="checkbox" id={`todo-${idx}`} />
-// <label for={`todo-${idx}`}>{todo.txt}</label>
-
-export function Todo({ todo }) {
-    console.log('todo', todo)
-    return (
-        <div className="note" >ssssss
-            {/* <h3>{note.info.title}</h3>
-            <img src={note.info.url} /> */}
-        </div>
-    )
 }
