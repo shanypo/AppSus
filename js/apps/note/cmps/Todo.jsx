@@ -1,4 +1,4 @@
-import { noteService } from '../../services/noteService.js'
+import { noteService } from '../services/noteService.js'
 export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt: null }
     state = {
         todo: this.props.todo,

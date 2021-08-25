@@ -1,5 +1,7 @@
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/noteService.js'
+import { AddNote } from '../cmps/AddNote.jsx'
+
 export class NoteHome extends React.Component {
     state = {
         notes: null
@@ -20,6 +22,7 @@ export class NoteHome extends React.Component {
         if (!this.state.notes) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
+                {/* <AddNote /> */}
                 <NoteList notes={this.state.notes} />
             </React.Fragment>
         );
