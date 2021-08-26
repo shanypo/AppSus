@@ -1,5 +1,5 @@
+const { Link } = ReactRouterDOM
 export function NoteTxt({ note, onDeleteNote }) {
-    console.log('onDeleteNote', onDeleteNote);
     return (
         <div className="note" >
             <h2>{note.info.title}</h2>

@@ -12,6 +12,7 @@
 /* NOTES */
 
 @import './apps/notes/notes.css';
+@import './apps/notes/NoteEdit.css';
 /* COMPONENTS */
 
 @import './apps//notes/cmps.note/videoNote.css';

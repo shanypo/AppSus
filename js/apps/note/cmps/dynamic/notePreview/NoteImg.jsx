@@ -1,5 +1,4 @@
 export function NoteImg({ note, onDeleteNote }) {
-    console.log('onDeleteNote: img ', onDeleteNote);
     return (
         <div className="note" >
             <h3>{note.info.title}</h3>

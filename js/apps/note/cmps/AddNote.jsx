@@ -24,7 +24,6 @@ export class AddNote extends React.Component {
 
     render() {
         const { type } = this.state
-        console.log('type', type);
         // console.log('this.props', this.props.loadNotes);
         return (
             // <form className="car-edit" onSubmit={this.onSaveCar}>

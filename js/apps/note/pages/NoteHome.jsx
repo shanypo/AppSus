@@ -1,3 +1,4 @@
+const { Link } = ReactRouterDOM
 import { NoteList } from '../cmps/NoteList.jsx'
 import { noteService } from '../services/noteService.js'
 import { AddNote } from '../cmps/AddNote.jsx'
@@ -12,7 +13,6 @@ export class NoteHome extends React.Component {
     }
 
     loadNotes = () => {
-        console.log('load new notes');
         noteService.query()
             .then((notes) => {
                 this.setState({ notes });
@@ -25,10 +25,13 @@ export class NoteHome extends React.Component {
     }
 
 
+
+
     render() {
         return (
             <React.Fragment>
                 <AddNote loadNotes={this.loadNotes} />
+                <Link to='/keep/edit'> link</Link>
                 <NoteList notes={this.state.notes} onDeleteNote={this.onDeleteNote} />
             </React.Fragment>
         );

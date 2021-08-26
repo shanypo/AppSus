@@ -12,11 +12,11 @@ export class AddNoteVideo extends React.Component {
             backgroundColor: '#fff'
         },
         videos: [
-            { title: 'video', img: '', videoId: '' },
-            { title: 'video2', img: '', videoId: '' },
-            { title: 'video3', img: '', videoId: '' },
-            { title: 'video4', img: '', videoId: '' },
-            { title: 'video5', img: '', videoId: '' }
+            { title: '', img: '', videoId: '' },
+            { title: '', img: '', videoId: '' },
+            { title: '', img: '', videoId: '' },
+            { title: '', img: '', videoId: '' },
+            { title: '', img: '', videoId: '' }
         ]
 
     }

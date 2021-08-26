@@ -15,8 +15,8 @@ export class AddNotePreview extends React.Component {
                     return <AddNoteTodo {...props} />
                 case 'video':
                     return <AddNoteVideo {...props} />
-                // case 'img':
-                //     return <AddNoteImg {...props} />
+                case 'img':
+                    return <AddNoteImg {...props} />
                 default:
                     break;
             }

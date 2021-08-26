@@ -1,0 +1,25 @@
+/* NOTE EDITOR */
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* display: none; */
+    /* background-color: rgba(0, 0, 0, .5); */
+    background-color: black;
+    cursor: pointer;
+    opacity: 0.5;
+    /* pointer-events: none; */
+    transition: opacity .6s;
+}
+
+.editor {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    min-width: 250px;
+    background-color: white;
+}

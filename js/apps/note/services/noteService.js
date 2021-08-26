@@ -5,7 +5,10 @@ export const noteService = {
     saveNewTxtNote,
     saveNewTodoNote,
     saveNewVideoNote,
-    deleteNote
+    saveNewImgNote,
+    deleteNote,
+    getNoteById,
+    updateNote
     // getNextCarId test
 }
 
@@ -65,7 +68,19 @@ const dafultNotes = [
         style: {
             backgroundColor: "#00d"
         }
-    }
+    },
+    {
+        id: _makeId(),
+        type: "img",
+        isPinned: true,
+        info: {
+            url: 'https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg',
+            title: 'My Dog'
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    },
 ];
 
 // LOAD NOTES //
@@ -103,6 +118,21 @@ function _getNoteIdxById(noteId) {
     })
 }
 
+// UPDATE NOTE //
+
+function updateNote(newNote) {
+    const noteIdx = _getNoteIdxById(newNote.id)
+    gNotes.splice(noteIdx, 1, newNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+// GET NOTE //
+
+function getNoteById(noteId) {
+    const noteIdx = _getNoteIdxById(noteId)
+    return Promise.resolve(gNotes[noteIdx])
+}
 
 
 // TXT NOTE //
@@ -193,24 +223,24 @@ function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff'
 
 // IMG TODO //
 
-function saveNewImgNote(info) {  // info: {title, searchKey, url, isPinned, backgroundColor }
-    const newVideoNote = _createVideoNote(info.title, info.url)
+function saveNewImgNote(info) {  // info: {title, url, isPinned, backgroundColor }
+    const newVideoNote = _createImgNote(info.title, info.url)
     gNotes.push(newVideoNote)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 
-function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff') {
+function _createImgNote(title, url, isPinned = false, backgroundColor = '#fff') {
     return {
         id: _makeId(),
         type: "img",
-        isPinned: true,
+        isPinned,
         info: {
-            url: "https://picsum.photos/200/300",
-            title: "Bobi and Me"
+            url,
+            title
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor
         }
     }
 }

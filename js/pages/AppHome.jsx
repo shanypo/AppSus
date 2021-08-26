@@ -3,6 +3,7 @@ const { Route, Switch } = ReactRouterDOM
 
 import { Home } from '../cmps/Home.jsx'
 import { NoteHome } from '../apps/note/pages/NoteHome.jsx'
+import { NoteEdit } from '../apps/note/pages/NoteEdit.jsx'
 // import { MailHome } from '../apps/mail/MailHome.jsx'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { MailDetails } from '../apps/mail/pages/MailDetails.jsx'
@@ -19,8 +20,8 @@ export function AppHome() {
                     {/* <Route component={MailHome} path="/mail" /> */}
                     <Route component={MailDetails} path="/mail/details/:mailId" />
                     <Route component={MailApp} path="/mail" />
+                    <Route component={NoteEdit} path="/keep/edit/:noteId?" />
                     <Route component={NoteHome} path="/keep" />
-                    {/* <Route component={KeepHome} path="/keep" /> */}
                     {/* <Route component={BooksHome} path="/books" /> */}
                     {/* <Route component={AppAbout} path="/books" /> */}
                     {/* <Route component={Home} path="/" /> */}

@@ -1,3 +1,4 @@
+const { Link } = ReactRouterDOM
 import { NoteImg } from './dynamic/notePreview/NoteImg.jsx'
 import { NoteTxt } from './dynamic/notePreview/NoteTxt.jsx'
 import { NoteTodo } from './dynamic/notePreview/NoteTodo.jsx'
@@ -23,7 +24,9 @@ export class NotePreview extends React.Component {
         }
 
         return (
-            <DynamicCmp note={note} onDeleteNote={this.props.onDeleteNote} />
+            <Link to={`/keep/edit/${note.id}`}>
+                <DynamicCmp note={note} onDeleteNote={this.props.onDeleteNote} />
+            </Link>
         )
     }
 }
