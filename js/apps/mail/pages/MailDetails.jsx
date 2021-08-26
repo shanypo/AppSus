@@ -1,5 +1,6 @@
-const { Link } = ReactRouterDOM
-import { mailService } from '../services/mail.service.js'
+const {  Route, Link } = ReactRouterDOM
+import { mailService } from '../services/mail.service.js';
+import { MailCompose } from '../cmps/MailCompose.jsx';
 
 export class MailDetails extends React.Component {
     state = {
@@ -22,6 +23,7 @@ export class MailDetails extends React.Component {
         mailService.getMailById(id).then(mail => {
             if (!mail) return this.props.history.push('/')
             this.setState({ mail })
+            // console.log(mail);
         })
     }
 
@@ -39,7 +41,6 @@ export class MailDetails extends React.Component {
     onRead = () => {
         const { mail } = this.state;
         mailService.onRead(mail.id);
-        console.log(mail);
     }
 
     render() {
@@ -48,8 +49,10 @@ export class MailDetails extends React.Component {
         this.onRead();
         return (
             <article className={'mail-details'}>
+                <Route component={() => <MailCompose mail={mail}/>} exact path={`/mail/details/:mailId/forword`}/>
                 <button onClick={this.onBack}>Go Back</button>
                 <button onClick={this.onDeleteMail}>Delete</button>
+                <Link to={`/mail/details/${mail.id}/forword`}><button>Forword</button></Link>
                 <p>{mail.subject}</p>
                 <p>{mail.from}</p>
                 <p>{mail.body}</p>
