@@ -6,7 +6,7 @@ export const noteService = {
     saveNewTodoNote,
     saveNewVideoNote,
     deleteNote
-    // getNextCarId
+    // getNextCarId test
 }
 
 import { storageService } from '../../../services/storage.service.js'
