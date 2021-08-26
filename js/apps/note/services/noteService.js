@@ -2,19 +2,21 @@
 export const noteService = {
     query,
     updateNoteTodo,
-    saveNewTxtNote
-    // deleteCar,
-    // getCarById,
+    saveNewTxtNote,
+    saveNewTodoNote,
+    saveNewVideoNote,
+    deleteNote
     // getNextCarId
 }
 
 import { storageService } from '../../../services/storage.service.js'
+import { _makeId } from '../../../services/util.service.js'
 
 let gNotes;
 const KEY = 'noteDB';
 const dafultNotes = [
     {
-        id: "n101",
+        id: _makeId(),
         type: "txt",
         isPinned: true,
         info: {
@@ -26,7 +28,7 @@ const dafultNotes = [
         }
     },
     {
-        id: "n102",
+        id: _makeId(),
         type: "img",
         isPinned: true,
         info: {
@@ -38,7 +40,7 @@ const dafultNotes = [
         }
     },
     {
-        id: "n103",
+        id: _makeId(),
         type: "todos",
         isPinned: true,
         info: {
@@ -51,9 +53,22 @@ const dafultNotes = [
         style: {
             backgroundColor: "#00d"
         }
+    },
+    {
+        id: _makeId(),
+        type: 'video',
+        isPinned: false,
+        info: {
+            title: "My Crazy Video",
+            url: 'https://www.youtube.com/embed/yJyClObyUOs'
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     }
 ];
 
+// LOAD NOTES //
 
 function query() {
     const storageNotes = _loadNotesFromStorage()
@@ -72,7 +87,15 @@ function query() {
     return Promise.resolve(gNotes)
 }
 
-// TODO NOTE //
+//  DELTE NOTE //
+
+function deleteNote(noteId) {
+    const noteIdx = _getNoteIdxById(noteId)
+    gNotes.splice(noteIdx, 1)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
 
 function _getNoteIdxById(noteId) {
     return gNotes.findIndex(function (note) {
@@ -80,12 +103,7 @@ function _getNoteIdxById(noteId) {
     })
 }
 
-function updateNoteTodo(noteId, todoIdx, newTodo) {
-    const noteIdx = _getNoteIdxById(noteId)
-    gNotes[noteIdx].info.todos[todoIdx] = newTodo;
-    _saveNotesToStorage()
-    return Promise.resolve()
-}
+
 
 // TXT NOTE //
 
@@ -98,7 +116,7 @@ function saveNewTxtNote(info) { // {title, txt, isPinned, backgroundColor}
 
 function _createTxtNote(title, txt, isPinned = false, backgroundColor = '#fff') {
     return {
-        id: "n108888",
+        id: _makeId(),
         type: 'txt',
         isPinned,
         info: {
@@ -107,6 +125,92 @@ function _createTxtNote(title, txt, isPinned = false, backgroundColor = '#fff') 
         },
         style: {
             backgroundColor
+        }
+    }
+}
+
+// TODO NOTE //
+
+function saveNewTodoNote(info) { // {title, isPinned, backgroundColor, todos}
+    const newTxtNote = _createTodoNote(info.title, info.todos)
+    gNotes.push(newTxtNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function _createTodoNote(title, todosStr, isPinned = false, backgroundColor = '#fff') {
+    const todosArray = todosStr.split(',')
+    let todos = [];
+    todosArray.map(todo => {
+        todos.push({ txt: todo, doneAt: null })
+    })
+    return {
+        id: _makeId(),
+        type: "todos",
+        isPinned,
+        info: {
+            title,
+            todos
+        },
+        style: {
+            backgroundColor
+        }
+    }
+}
+
+// UPDATE TODO //
+
+function updateNoteTodo(noteId, todoIdx, newTodo) {
+    const noteIdx = _getNoteIdxById(noteId)
+    gNotes[noteIdx].info.todos[todoIdx] = newTodo;
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+// VIDEO TODO //
+
+function saveNewVideoNote(info) {  // info: {title, searchKey, url, isPinned, backgroundColor }
+    const newVideoNote = _createVideoNote(info.title, info.url)
+    gNotes.push(newVideoNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff') {
+    return {
+        id: _makeId(),
+        type: 'video',
+        isPinned,
+        info: {
+            title,
+            url
+        },
+        style: {
+            backgroundColor
+        }
+    }
+}
+
+// IMG TODO //
+
+function saveNewImgNote(info) {  // info: {title, searchKey, url, isPinned, backgroundColor }
+    const newVideoNote = _createVideoNote(info.title, info.url)
+    gNotes.push(newVideoNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff') {
+    return {
+        id: _makeId(),
+        type: "img",
+        isPinned: true,
+        info: {
+            url: "https://picsum.photos/200/300",
+            title: "Bobi and Me"
+        },
+        style: {
+            backgroundColor: "#00d"
         }
     }
 }

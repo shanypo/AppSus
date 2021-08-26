@@ -1,7 +1,7 @@
 
 import { Todo } from '../../Todo.jsx'
 
-export function NoteTodo({ note }) {
+export function NoteTodo({ note, onDeleteNote }) {
     return (
         <div className="note">
             <h2>{note.info.title}</h2>
@@ -13,6 +13,7 @@ export function NoteTodo({ note }) {
 
                 }
             </ul>
+            <button onClick={() => onDeleteNote(note.id)}>Delete Note</button>
         </div>
     )
 }

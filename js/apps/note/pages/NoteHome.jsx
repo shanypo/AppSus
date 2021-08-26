@@ -4,7 +4,7 @@ import { AddNote } from '../cmps/AddNote.jsx'
 
 export class NoteHome extends React.Component {
     state = {
-        notes: null
+        notes: []
     };
 
     componentDidMount() {
@@ -19,13 +19,17 @@ export class NoteHome extends React.Component {
             });
     };
 
+    onDeleteNote = (noteId) => {
+        noteService.deleteNote(noteId)
+            .then(() => this.loadNotes())
+    }
+
 
     render() {
-        if (!this.state.notes) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
                 <AddNote loadNotes={this.loadNotes} />
-                <NoteList notes={this.state.notes} />
+                <NoteList notes={this.state.notes} onDeleteNote={this.onDeleteNote} />
             </React.Fragment>
         );
     }

@@ -3,10 +3,10 @@ export class AddNoteTodo extends React.Component {
 
     state = {
         info: {
-            title: 'title',
+            title: 'my tasks',
             isPinned: false,
             backgroundColor: '#fff',
-            todo: 'Do Something'
+            todos: 'Do Something'
         }
 
         // todos: [
@@ -19,25 +19,27 @@ export class AddNoteTodo extends React.Component {
 
     handleChange = ({ target }) => {
         const value = target.value
+        const field = target.name
         // const todo = { txt: value, doneAt: null }
-        this.setState(prevState => ({ info: { ...prevState.info, todo: value } }))
+        this.setState(prevState => ({ info: { ...prevState.info, [field]: value } }))
 
         // this.setState({ todos })
         // this.setState(prevState => ({ ...prevState, todos: [...prevState.todos, todo] }))
     }
 
-    // onSaveNote = (ev) => {
-    // ev.preventDefault()
-    // noteService.saveNewTxtNote(this.state.info)
-    //     .then(() => this.props.loadNotes())
+    onSaveNote = (ev) => {
+        ev.preventDefault()
+        noteService.saveNewTodoNote(this.state.info)
+            .then(() => this.props.loadNotes())
 
-    // }
+    }
 
     render() {
         // const { vendor, speed, id } = this.state.car
         return (
             <form className="add-todo" onSubmit={this.onSaveNote}>
-                <input type="text" name="txt" placeholder="Enter comma seperated todos" onChange={this.handleChange} />
+                <input type="text" name="title" placeholder="title" onChange={this.handleChange} />
+                <input type="text" name="todos" placeholder="Enter comma seperated todos" onChange={this.handleChange} />
                 <button>Save Note</button>
             </form>
         )

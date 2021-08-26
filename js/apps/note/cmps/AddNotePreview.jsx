@@ -1,5 +1,7 @@
 import { AddNoteTxt } from './dynamic/addNote/AddNoteTxt.jsx';
 import { AddNoteTodo } from './dynamic/addNote/AddNoteTodo.jsx';
+import { AddNoteVideo } from './dynamic/addNote/AddNoteVideo.jsx'
+import { AddNoteImg } from './dynamic/addNote/AddNoteImg.jsx'
 
 export class AddNotePreview extends React.Component {
     render() {
@@ -11,8 +13,10 @@ export class AddNotePreview extends React.Component {
                     return <AddNoteTxt {...props} />
                 case 'todos':
                     return <AddNoteTodo {...props} />
+                case 'video':
+                    return <AddNoteVideo {...props} />
                 // case 'img':
-                //     return <NoteImg {...props} />
+                //     return <AddNoteImg {...props} />
                 default:
                     break;
             }

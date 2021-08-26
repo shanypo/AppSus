@@ -35,8 +35,9 @@ export class AddNote extends React.Component {
                 </div>
                 <ul className="clean-list flex space-between direction-row">
                     <li onClick={() => this.onChangeType('txt')}>text</li>
-                    <li onClick={() => this.onChangeType('img')}>img</li>
+                    <li onClick={() => this.onChangeType('video')}>video</li>
                     <li onClick={() => this.onChangeType('todos')}>todo</li>
+                    <li onClick={() => this.onChangeType('img')}>img</li>
                 </ul>
             </section>
 

@@ -1,9 +1,9 @@
-export function NoteImg({ note, onDeleteNote }) {
-    console.log('onDeleteNote: img ', onDeleteNote);
+export function NoteVideo({ note, onDeleteNote }) {
     return (
         <div className="note" >
             <h3>{note.info.title}</h3>
-            <img src={note.info.url} />
+            <iframe src={note.info.url}>
+            </iframe>
             <button onClick={() => onDeleteNote(note.id)}>Delete Note</button>
         </div>
     )
