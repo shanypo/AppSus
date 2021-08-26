@@ -1,7 +1,8 @@
 
 export const noteService = {
     query,
-    updateNoteTodo
+    updateNoteTodo,
+    saveNewTxtNote
     // deleteCar,
     // getCarById,
     // getNextCarId
@@ -71,6 +72,8 @@ function query() {
     return Promise.resolve(gNotes)
 }
 
+// TODO NOTE //
+
 function _getNoteIdxById(noteId) {
     return gNotes.findIndex(function (note) {
         return noteId === note.id
@@ -84,7 +87,31 @@ function updateNoteTodo(noteId, todoIdx, newTodo) {
     return Promise.resolve()
 }
 
-// STORAGE SAVE AND LOAD //
+// TXT NOTE //
+
+function saveNewTxtNote(info) { // {title, txt, isPinned, backgroundColor}
+    const newTxtNote = _createTxtNote(info.title, info.txt)
+    gNotes.push(newTxtNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function _createTxtNote(title, txt, isPinned = false, backgroundColor = '#fff') {
+    return {
+        id: "n108888",
+        type: 'txt',
+        isPinned,
+        info: {
+            title,
+            txt
+        },
+        style: {
+            backgroundColor
+        }
+    }
+}
+
+// STORAGE - SAVE AND LOAD //
 
 function _loadNotesFromStorage() {
     return storageService.loadFromStorage(KEY)
@@ -93,3 +120,5 @@ function _loadNotesFromStorage() {
 function _saveNotesToStorage() {
     storageService.saveToStorage(KEY, gNotes)
 }
+
+

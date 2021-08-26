@@ -1,6 +1,6 @@
-import { NoteImg } from './dynamic/NoteImg.jsx'
-import { NoteTxt } from './dynamic/NoteTxt.jsx'
-import { NoteTodo } from './dynamic/NoteTodo.jsx'
+import { NoteImg } from './dynamic/notePreview/NoteImg.jsx'
+import { NoteTxt } from './dynamic/notePreview/NoteTxt.jsx'
+import { NoteTodo } from './dynamic/notePreview/NoteTodo.jsx'
 
 export class NotePreview extends React.Component {
     render() {

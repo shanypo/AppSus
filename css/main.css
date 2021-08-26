@@ -11,9 +11,10 @@
 
 /* NOTES */
 
-@import './apps/pages/notes.css';
+@import './apps/notes/notes.css';
 /* COMPONENTS */
 
+@import './apps/notes/cmps.note/addNote.css';
 /* MAIL */
 
 @import './apps/mails/mail-preview.css';

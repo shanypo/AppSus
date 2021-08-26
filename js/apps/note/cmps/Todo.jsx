@@ -14,9 +14,9 @@ export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt
         const todo = this.state.todo
         const ToDoClass = ((todo.doneAt) ? 'done' : '') + ' pointer';
         return (
-            <p onClick={() => { this.onDone() }} className={ToDoClass} >
+            <li onClick={() => { this.onDone() }} className={ToDoClass} >
                 {todo.txt}
-            </p >
+            </li >
         )
     }
 

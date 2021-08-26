@@ -1,48 +1,45 @@
+import { AddNotePreview } from './AddNotePreview.jsx'
 
 export class AddNote extends React.Component {
 
     state = {
-        note: {
-            vendor: '',
-            speed: ''
-        }
+        type: 'txt'
     }
 
-    componentDidMount() {
-        const id = this.props.match.params.carId
-        if (!id) return
-        carService.getCarById(id)
-            .then(car => {
-                this.setState({ car })
-            })
+    // componentDidMount() {
+    //     this.setState({ car })
+    // }
+
+    onChangeType = (type) => {
+        console.log('type', type);
+        this.setState({ type })
     }
 
-    handleChange = ({ target }) => {
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
-        this.setState(prevState => ({ car: { ...prevState.car, [field]: value } }))
-    }
+    // onSaveCar = (ev) => {
+    //     ev.preventDefault()
+    //     carService.saveCar(this.state.car)
+    //         .then(() => this.props.history.push('/car'))
 
-    onSaveCar = (ev) => {
-        ev.preventDefault()
-        carService.saveCar(this.state.car)
-            .then(() => this.props.history.push('/car'))
-
-    }
+    // }
 
     render() {
-        const { vendor, speed, id } = this.state.car
+        const { type } = this.state
+        console.log('type', type);
+        // console.log('this.props', this.props.loadNotes);
         return (
-            <form className="car-edit" onSubmit={this.onSaveCar}>
-                <h1>{id ? 'Edit' : 'Add'} Car</h1>
-                <label htmlFor="vendor" >Vendor</label>
-                <input type="text" name="vendor" id="vendor" value={vendor} onChange={this.handleChange} />
+            // <form className="car-edit" onSubmit={this.onSaveCar}>
+            <section className="add-note">
+                <h4>Take a note...</h4>
+                <div className="add-note-preview">
+                    <AddNotePreview type={type} loadNotes={this.props.loadNotes} />
+                </div>
+                <ul className="clean-list flex space-between direction-row">
+                    <li onClick={() => this.onChangeType('txt')}>text</li>
+                    <li onClick={() => this.onChangeType('img')}>img</li>
+                    <li onClick={() => this.onChangeType('todos')}>todo</li>
+                </ul>
+            </section>
 
-                <label htmlFor="speed" >Speed</label>
-                <input type="number" name="speed" id="speed" value={speed} onChange={this.handleChange} />
-
-                <button>Save Car</button>
-            </form>
         )
     }
 }

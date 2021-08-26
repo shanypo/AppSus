@@ -1,0 +1,9 @@
+.add-note {
+    border: 2px solid black;
+    width: 250px;
+}
+
+.add-note li {
+    border: 2px solid black;
+    padding: 4px;
+}

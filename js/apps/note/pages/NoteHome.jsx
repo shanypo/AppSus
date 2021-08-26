@@ -12,17 +12,19 @@ export class NoteHome extends React.Component {
     }
 
     loadNotes = () => {
+        console.log('load new notes');
         noteService.query()
             .then((notes) => {
                 this.setState({ notes });
             });
     };
 
+
     render() {
         if (!this.state.notes) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                {/* <AddNote /> */}
+                <AddNote loadNotes={this.loadNotes} />
                 <NoteList notes={this.state.notes} />
             </React.Fragment>
         );
