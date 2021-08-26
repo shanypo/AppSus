@@ -1,5 +1,5 @@
 import { storageService } from '../../../services/storage.service.js';
-import {_makeId} from '../../../services/util.service.js';
+import { _makeId } from '../../../services/util.service.js';
 
 export const mailService = {
     getEmails,
@@ -49,14 +49,16 @@ const loggedinUser = {
 
 function query(criteria) {
     if (!criteria) return Promise.resolve(gMails);
-    console.log(criteria);
+    const { status, txt, labels, isStarred} = criteria;
+    let mailToDisplay = _getTypeDysplay(status);
+    return Promise.resolve(mailToDisplay);
 }
 
 function toggelRead(mailId) {
     getMailById(mailId)
-    .then(mail => {
-        mail.isRead = !mail.isRead;
-    })
+        .then(mail => {
+            mail.isRead = !mail.isRead;
+        })
     _saveMails();
 }
 
@@ -90,11 +92,11 @@ function deleteMail(mailId) {
     return Promise.resolve()
 }
 
-function onRead(mailId){
+function onRead(mailId) {
     getMailById(mailId)
-    .then(mail => {
-        mail.isRead = true;
-    })
+        .then(mail => {
+            mail.isRead = true;
+        })
     _saveMails();
 }
 /****************************storage****************************************/
@@ -105,4 +107,26 @@ function _saveMails() {
 
 function _loadFromStorage() {
     return storageService.loadFromStorage(KEY);
+}
+
+/***************************get type display************************/
+
+function _getTypeDysplay(type) {
+    switch (type) {
+        case 'all':
+            return gMails;
+        case 'read':
+            return gMails.filter(mail => {
+                return mail.isRead
+            });
+        case 'unread':
+            return gMails.filter(mail => {
+                return !mail.isRead
+            });
+        case 'txt':
+            return gMails.filter(mail => {
+                return !mail.isRead
+            });
+    }
+
 }
