@@ -1,17 +1,19 @@
 import { storageService } from '../../../services/storage.service.js';
+import {_makeId} from '../../../services/util.service.js';
 
 export const mailService = {
     getEmails,
     getMailById,
     deleteMail,
-    getCriteria,
     toggelRead,
-    onRead
+    onRead,
+    sendMail,
+    query
 }
 
-const gMails = [
+let gDummyMails = [
     {
-        id: 'e101',
+        id: _makeId(),
         from: 'Google',
         subject: 'Miss you',
         body: 'hello there',
@@ -19,16 +21,16 @@ const gMails = [
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
     },
     {
-        id: 'e102',
+        id: _makeId(),
         from: 'Google',
         subject: 'AIG just for you',
         body: 'get your car insurance',
-        isRead: false,
+        isRead: true,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
         to: 'shanypo@gmail.com'
     },
     {
-        id: 'e103',
+        id: _makeId(),
         from: 'Google',
         subject: 'working together',
         body: 'hello there',
@@ -38,31 +40,16 @@ const gMails = [
     },
 ]
 const KEY = 'mailDB';
+let gMails = _loadFromStorage() || gDummyMails;
 
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'hanna montana'
 }
 
-const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search
-    isRead: false,
-    // (optional property, if missing: show all)
-    isStared: false, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
-}
-
-function getCriteria() {
-    return Promise.resolve(criteria);
-}
-
-function onRead(mailId){
-    getMailById(mailId)
-    .then(mail => {
-        mail.isRead = true;
-    })
-    saveMails();
+function query(criteria) {
+    if (!criteria) return Promise.resolve(gMails);
+    console.log(criteria);
 }
 
 function toggelRead(mailId) {
@@ -70,15 +57,22 @@ function toggelRead(mailId) {
     .then(mail => {
         mail.isRead = !mail.isRead;
     })
-    saveMails();
-}
-
-function saveMails() {
-    storageService.saveToStorage(KEY, gMails);
+    _saveMails();
 }
 
 function getEmails() {
+    _saveMails();
     return Promise.resolve(gMails);
+}
+
+function sendMail(newMail) {
+    newMail.id = _makeId();
+    newMail.from = loggedinUser.email;
+    newMail.isRead = false;
+    newMail.sentAt = new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate();
+    gMails.push(newMail);
+    console.log(gMails);
+    _saveMails();
 }
 
 function getMailById(mailId) {
@@ -94,4 +88,21 @@ function deleteMail(mailId) {
     })
     gMails.splice(mailIdx, 1)
     return Promise.resolve()
+}
+
+function onRead(mailId){
+    getMailById(mailId)
+    .then(mail => {
+        mail.isRead = true;
+    })
+    _saveMails();
+}
+/****************************storage****************************************/
+
+function _saveMails() {
+    storageService.saveToStorage(KEY, gMails);
+}
+
+function _loadFromStorage() {
+    return storageService.loadFromStorage(KEY);
 }

@@ -18,6 +18,9 @@
 /* MAIL */
 
 @import './apps/mails/mail-preview.css';
+@import './apps/mails/mail-home.css';
+@import './apps/mails/mail-compose.css';
+
 /* COMPONENTS */
 
 /* BOOKS */

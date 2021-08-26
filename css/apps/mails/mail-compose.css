@@ -1,0 +1,14 @@
+.compose-modal{
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.compose-modal.close{
+    display: none;
+}
+
+.background{
+    background-color: rebeccapurple;
+}

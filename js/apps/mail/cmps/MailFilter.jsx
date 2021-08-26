@@ -19,7 +19,7 @@ export class MailFilter extends React.Component {
 
         return (
             <section className="mail-criteria">
-                <label onChange={this.handleChange}>inbox</label>
+        
             </section>
         )
     }

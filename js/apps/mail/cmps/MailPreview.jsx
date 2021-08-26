@@ -26,10 +26,10 @@ export class MailPreview extends React.Component {
     if (!mail) return <div></div>
     const classRead = mail.isRead === true ? 'mail-readen' : '';
     return (
-      <Link to={`/mail/${mail.id}`}>
-      <article className={`mail-preview ${classRead}`}>
-        <input type="checkbox" onClick={this.onCheck}></input>
+      <Link to={`/mail/details/${mail.id}`}>
+      <article className={`mail-preview ${classRead} flex`}>
         <p>{mail.from}</p>
+        <p>{mail.subject}</p>
         <LongTxt body={mail.body} />
         <p>{mail.sentAt}</p>
       </article>
