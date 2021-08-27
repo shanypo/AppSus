@@ -1,0 +1,15 @@
+/* FOOTER */
+
+footer {
+    height: 206px;
+    text-align: center;
+}
+
+footer p {
+    color: white;
+    margin-bottom: 50px;
+}
+
+footer .logo {
+    display: inline-block;
+}

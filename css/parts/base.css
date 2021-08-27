@@ -5,7 +5,10 @@
 /* BASE */
 
 html {
-    color: #606060;
+    color: #3d3d3d;
+    /* font-family: montserrat, serif; */
+    font-family: Lato, serif;
+    line-height: 1.875;
 }
 
 body {

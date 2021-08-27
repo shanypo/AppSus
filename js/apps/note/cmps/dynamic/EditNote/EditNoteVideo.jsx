@@ -16,7 +16,6 @@ export class EditNoteVideo extends React.Component {
 
     }
     componentDidMount() {
-        console.log('this.props.note', this.props.note)
         youtubeService.searchYT(this.state.note.searchKey)
             .then(videosData => this.setState(prevState => ({ ...prevState, videos: videosData })));
     }

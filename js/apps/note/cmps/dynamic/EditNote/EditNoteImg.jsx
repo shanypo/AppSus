@@ -16,7 +16,6 @@ export class EditNoteImg extends React.Component {
         const value = target.value
         let newInfo = this.state.note.info
         newInfo[field] = value
-        // console.log('newInfo', newInfo);
         this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
     }
 

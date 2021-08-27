@@ -2,14 +2,6 @@ export const youtubeService = {
     searchYT
 }
 
-// function searchBook(searchKey) {
-//     return axios.get(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchKey}`)
-//         .then((rawData) => {
-//             return rawData.data.items
-//         })
-//         .catch((err) => err);
-// }
-
 function searchYT(searchValue) {
     return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet
     &videoEmbeddable=true&type=video&key=AIzaSyDxdBjLtaEDBH2T58Kbei9jSWXlnwmgqTM&q=${searchValue}`)

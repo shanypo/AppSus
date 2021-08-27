@@ -8,11 +8,14 @@ import { NoteEdit } from '../apps/note/pages/NoteEdit.jsx'
 import { AppHeader } from '../cmps/AppHeader.jsx'
 import { MailDetails } from '../apps/mail/pages/MailDetails.jsx'
 import { MailApp } from '../apps/mail/pages/MailApp.jsx'
+import { AppFooter } from '../cmps/AppFooter.jsx'
 
 export function AppHome() {
+
     return (
         <Router>
-            <header>
+            {/* <div className="screen pointer" onclick="openRightNav()"></div> */}
+            <header className="main-header main-layout flex direction-row align-center space-between theme-color">
                 <AppHeader />
             </header>
             <main>
@@ -27,6 +30,9 @@ export function AppHome() {
                     {/* <Route component={Home} path="/" /> */}
                 </Switch>
             </main>
+            <footer className="main-footer main-layout flex direction-col theme-color">
+                <AppFooter />
+            </footer>
         </Router>
     )
 }

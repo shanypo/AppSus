@@ -3,30 +3,38 @@ import { noteService } from "../../../services/noteService.js"
 export class AddNoteImg extends React.Component {
 
     state = {
-        info: {
-            title: '',
-            url: 'https://picsum.photos/200/300',
+        note: {
+            id: '',
+            type: "img",
             isPinned: false,
-            backgroundColor: '#fff',
-            txt: ''
-        },
+            info: {
+                url: "https://picsum.photos/200/300",
+                title: 'My photo',
+                txt: ''
+            },
+            style: {
+                backgroundColor: 'white'
+            }
+        }
 
     }
 
     handleChange = ({ target }) => {
         const field = target.name
         const value = target.value
-        this.setState(prevState => ({ info: { ...prevState.info, [field]: value } }))
+        let newInfo = this.state.note.info
+        newInfo[field] = value
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
     }
 
     onSaveNote = (ev) => {
         ev.preventDefault()
-        noteService.saveNewImgNote(this.state.info)
+        noteService.saveNewNote(this.state.note)
             .then(() => this.props.loadNotes())
     }
 
     render() {
-        const { info } = this.state
+        const { info } = this.state.note
         return (
             <div>
                 <form >

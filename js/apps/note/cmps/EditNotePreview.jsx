@@ -4,13 +4,8 @@ import { EditNoteVideo } from './dynamic/EditNote/EditNoteVideo.jsx'
 import { EditNoteImg } from './dynamic/EditNote/EditNoteImg.jsx'
 
 export class EditNotePreview extends React.Component {
-    // get urlParamCtg() {
-    //     const urlSrcPrm = new URLSearchParams(this.props.location.search)
-    //     return urlSrcPrm.get('ctg')
-    // }
     render() {
         const { note } = this.props;
-        // console.log('note', note);
         const DynamicCmp = (props) => {
             switch (props.note.type) {
                 case 'txt':

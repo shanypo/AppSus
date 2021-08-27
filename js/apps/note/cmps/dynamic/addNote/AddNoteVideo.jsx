@@ -5,13 +5,19 @@ import { VideoResult } from '../../VideoResult.jsx'
 export class AddNoteVideo extends React.Component {
 
     state = {
-        info: {
-            searchKey: 'beatles',
-            title: 'my video',
-            url: 'https://www.youtube.com/embed/yJyClObyUOs',
+        note: {
+            id: '',
+            type: 'video',
             isPinned: false,
-            backgroundColor: '#fff',
-            txt: ''
+            info: {
+                title: 'My video',
+                url: 'https://www.youtube.com/embed/yJyClObyUOs',
+                txt: ''
+            },
+            style: {
+                backgroundColor: 'white'
+            },
+            searchKey: 'beatles'
         },
         videos: [
             { title: '', img: '', videoId: '1' },
@@ -24,39 +30,46 @@ export class AddNoteVideo extends React.Component {
     }
 
     handleChange = ({ target }) => {
-        const field = target.name
         const value = target.value
-        this.setState(prevState => ({ info: { ...prevState.info, [field]: value } }))
+        const field = target.name
+        let newInfo = this.state.note.info
+        newInfo[field] = value
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
+    }
+    handleChangeSearch = ({ target }) => {
+        const value = target.value
+        this.setState(prevState => ({ note: { ...prevState.note, searchKey: value } }))
     }
 
     onSearchVideo = (ev) => {
         ev.preventDefault()
-        youtubeService.searchYT(this.state.info.searchKey)
+        youtubeService.searchYT(this.state.note.searchKey)
             .then(videosData => this.setState(prevState => ({ ...prevState, videos: videosData })));
     }
 
     onSelectVideo = (videoId, idx) => {
-        console.log('videoId', videoId);
         const url = `https://www.youtube.com/embed/${videoId}`;
-        this.setState(prevState => ({ info: { ...prevState.info, url: url } }))
+        let newInfo = this.state.note.info
+        newInfo.url = url
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
         this.setState({ selectedVideo: idx })
     }
 
-    onSaveNote = (ev) => {
-        ev.preventDefault()
-        noteService.saveNewVideoNote(this.state.info)
+    onSaveNote = () => {
+        noteService.saveNewNote(this.state.note)
             .then(() => this.props.loadNotes())
     }
 
     render() {
         const videosDisplay = this.state.videos
         const selectedVideo = this.state.selectedVideo
+        const note = this.state.note
         return (
-            <div>
-                <input type="text" name="title" placeholder="title" onChange={this.handleChange} />
+            <div >
+                <input type="search" name="title" placeholder="title" onChange={this.handleChange} />
                 <form >
-                    <input type="text" name="searchKey"
-                        placeholder="Search a YT video" onChange={this.handleChange} />
+                    <input type="search" name="searchKey"
+                        placeholder="Search a YT video" onChange={this.handleChangeSearch} />
                     <button onClick={this.onSearchVideo}>Search Video</button>
                 </form>
                 <section>
@@ -64,7 +77,7 @@ export class AddNoteVideo extends React.Component {
                         <VideoResult selectedVideo={selectedVideo} idx={idx} key={video.videoId} video={video} onSelectVideo={this.onSelectVideo} />
                     )}
                 </section>
-                <textarea placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 <button onClick={this.onSaveNote}>Save Note</button>
             </div>
         )

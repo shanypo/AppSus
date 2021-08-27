@@ -18,12 +18,8 @@ export class NoteEdit extends React.Component {
             })
     }
 
-
-
-
     render() {
         const { note } = this.state
-        // console.log('note', note);
         return (
             <React.Fragment>
                 <div className='screen' onClick={(ev) => this.goBack(ev)} >

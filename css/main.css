@@ -9,6 +9,8 @@
 
 /* COMPONENTS */
 
+@import './cmps/app-header.css';
+@import './cmps/app-footer.css';
 /* NOTES */
 
 @import './apps/notes/notes.css';

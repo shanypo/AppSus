@@ -10,12 +10,10 @@ export class EditNoteTxt extends React.Component {
         const value = target.value
         let newInfo = this.state.note.info
         newInfo[field] = value
-        // console.log('newInfo', newInfo);
         this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
     }
 
     onSaveNote = () => {
-        // console.log('this.props', this.props);
         noteService.updateNote(this.state.note)
             .then(() => this.props.goBack())
 

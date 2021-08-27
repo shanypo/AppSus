@@ -10,7 +10,7 @@ export class AddNoteTodo extends React.Component {
             info: {
                 title: 'my tasks',
                 todos: [
-                    { txt: '', doneAt: null },
+                    { txt: 'task 1', doneAt: null },
                 ]
             },
             style: {
@@ -50,7 +50,7 @@ export class AddNoteTodo extends React.Component {
 
     onSaveNote = (ev) => {
         ev.preventDefault()
-        noteService.saveNewTodoNote(this.state.note)
+        noteService.saveNewNote(this.state.note)
             .then(() => this.props.loadNotes())
 
     }

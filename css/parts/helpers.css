@@ -1,5 +1,11 @@
 /* HELPERS */
 
+/* THEME COLOR */
+
+.theme-color {
+    background-color: rgb(33, 158, 188);
+}
+
 /* flex helpers */
 
 .flex {
