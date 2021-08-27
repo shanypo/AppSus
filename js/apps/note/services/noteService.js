@@ -1,14 +1,15 @@
 
 export const noteService = {
     query,
-    updateNoteTodo,
     saveNewTxtNote,
     saveNewTodoNote,
     saveNewVideoNote,
     saveNewImgNote,
     deleteNote,
     getNoteById,
-    updateNote
+    updateNote,
+    updateNoteTodo,
+    updateNoteColor
     // getNextCarId test
 }
 
@@ -67,7 +68,8 @@ const dafultNotes = [
         },
         style: {
             backgroundColor: "#00d"
-        }
+        },
+        searchKey: 'beatles'
     },
     {
         id: _makeId(),
@@ -123,6 +125,13 @@ function _getNoteIdxById(noteId) {
 function updateNote(newNote) {
     const noteIdx = _getNoteIdxById(newNote.id)
     gNotes.splice(noteIdx, 1, newNote)
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function updateNoteColor(noteId, color) {
+    const noteIdx = _getNoteIdxById(noteId)
+    gNotes[noteIdx].style.backgroundColor = color
     _saveNotesToStorage()
     return Promise.resolve()
 }
@@ -200,13 +209,13 @@ function updateNoteTodo(noteId, todoIdx, newTodo) {
 // VIDEO TODO //
 
 function saveNewVideoNote(info) {  // info: {title, searchKey, url, isPinned, backgroundColor }
-    const newVideoNote = _createVideoNote(info.title, info.url)
+    const newVideoNote = _createVideoNote(info.title, info.url, info.searchKey)
     gNotes.push(newVideoNote)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 
-function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff') {
+function _createVideoNote(title, url, searchKey, isPinned = false, backgroundColor = '#fff') {
     return {
         id: _makeId(),
         type: 'video',
@@ -217,7 +226,8 @@ function _createVideoNote(title, url, isPinned = false, backgroundColor = '#fff'
         },
         style: {
             backgroundColor
-        }
+        },
+        searchKey
     }
 }
 

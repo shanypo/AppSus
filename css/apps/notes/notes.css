@@ -10,6 +10,52 @@
     margin: 5px;
 }
 
+/* NOTE COLORS */
+
+.white {
+    background-color: #fff;
+}
+
+.red {
+    background-color: #F28B81;
+}
+
+.orange {
+    background-color: #FBBC05;
+}
+
+.yellow {
+    background-color: #FFF475;
+}
+
+.green {
+    background-color: #A7FFEB;
+}
+
+.blue {
+    background-color: #AECBFA;
+}
+
+.purple {
+    background-color: #D7AEFB;
+}
+
+.pink {
+    background-color: #FDCFE8;
+}
+
+/* NOTE BUTTOMS */
+
+.note:hover .note-buttoms {
+    opacity: 1;
+    transition: opacity .8s;
+}
+
+.note-buttoms {
+    opacity: 0;
+    transition: opacity .8s;
+}
+
 .done {
     text-decoration: line-through;
 }

@@ -4,7 +4,9 @@ export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt
         todo: this.props.todo,
         note: this.props.note
     }
-    onDone = () => {
+    onDone = (e) => {
+        console.log('e', e);
+        e.stopPropagation();
         let { todo } = this.state;
         todo.doneAt = todo.doneAt ? null : new Date().toLocaleString()
         this.setState({ todo })
@@ -14,7 +16,7 @@ export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt
         const todo = this.state.todo
         const ToDoClass = ((todo.doneAt) ? 'done' : '') + ' pointer';
         return (
-            <li onClick={() => { this.onDone() }} className={ToDoClass} >
+            <li onClick={this.onDone} className={ToDoClass} >
                 {todo.txt}
             </li >
         )

@@ -19,11 +19,17 @@ export class NoteHome extends React.Component {
             });
     };
 
-    onDeleteNote = (noteId) => {
+    onDeleteNote = (ev, noteId) => {
+        ev.stopPropagation()
         noteService.deleteNote(noteId)
             .then(() => this.loadNotes())
     }
 
+    onChangeColor = (ev, noteId, color) => {
+        ev.stopPropagation()
+        noteService.updateNoteColor(noteId, color)
+            .then(() => this.loadNotes())
+    }
 
 
 
@@ -32,7 +38,8 @@ export class NoteHome extends React.Component {
             <React.Fragment>
                 <AddNote loadNotes={this.loadNotes} />
                 <Link to='/keep/edit'> link</Link>
-                <NoteList notes={this.state.notes} onDeleteNote={this.onDeleteNote} />
+                <NoteList notes={this.state.notes} onDeleteNote={this.onDeleteNote}
+                    onChangeColor={this.onChangeColor} />
             </React.Fragment>
         );
     }
