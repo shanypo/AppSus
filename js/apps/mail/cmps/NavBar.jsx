@@ -2,8 +2,7 @@ const { Route, Link, NavLink } = ReactRouterDOM
 
 import { MailCompose } from './MailCompose.jsx';
 
-export function NavBar({onFilteType, onUnReadMails}) {
-const unreadCount = onUnReadMails;
+export function NavBar({countUnRead}) {
 
     return (
         <React.Fragment>
@@ -15,7 +14,7 @@ const unreadCount = onUnReadMails;
             <NavLink to="/mail/starred"><button>starred</button></NavLink>
             <NavLink to="/mail/drafts"><button>Drafts</button></NavLink>
             </nav>
-            <p>{}</p>
+            <p>Unread mails: {countUnRead}</p>
         </React.Fragment>
     )
 }

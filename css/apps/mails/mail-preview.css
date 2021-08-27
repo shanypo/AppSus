@@ -15,3 +15,11 @@
 .mail-readen{
     font-weight: unset;
 }
+
+.mail-preview .far fa-star:before{
+    color: yellow;
+}
+
+.mail-preview .fa-star{
+    color: grey;
+}

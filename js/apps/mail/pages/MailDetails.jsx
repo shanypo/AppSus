@@ -5,7 +5,6 @@ import { MailCompose } from '../cmps/MailCompose.jsx';
 export class MailDetails extends React.Component {
     state = {
         mail: null,
-        criteria: null
     }
 
     componentDidMount() {

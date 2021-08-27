@@ -9,7 +9,8 @@ export const mailService = {
     onRead,
     sendMail,
     query,
-    saveDrafts
+    saveDrafts,
+    toggelStar
 }
 
 let gDummyMails = [
@@ -62,10 +63,14 @@ const loggedinUser = {
     fullname: 'hanna montana'
 }
 
-function query(criteria) {
+function query(criteria, sortBy, display, txt) {
+    const filter = {display, txt}
     if (!criteria) return Promise.resolve(gMails);
     let mailToDisplay = _getMailsByFolder(criteria)
-    mailToDisplay = _getTypeDysplay(mailToDisplay, criteria);
+    console.log(mailToDisplay);
+    if(filter) mailToDisplay = _getTypeDysplay(mailToDisplay, filter);
+    if(sortBy)mailToDisplay = _sortMails(mailToDisplay, sortBy)
+    _saveMails();
     return Promise.resolve(mailToDisplay);
 }
 
@@ -82,7 +87,7 @@ function getEmails() {
     return Promise.resolve(gMails);
 }
 
-function sendMail(newMail, isDraft = false, draftCreated = false) {
+function sendMail(newMail, isDraft = false) {
     const mail = {
         id: _makeId(),
         to: newMail.to,
@@ -97,21 +102,21 @@ function sendMail(newMail, isDraft = false, draftCreated = false) {
     }
 
     if (isDraft) {
+        gMails.push(mail);
         _saveMails();
         return Promise.resolve(mail.id);
     }
-
     mail.isDraft = false;
     gMails.push(mail);
     _saveMails();
 }
 
 function saveDrafts(mailData, mailId) {
-    const idx = getMailById(mailId);
+    const idx = _getMailId(mailId);
     if (mailData.to) gMails[idx].to = mailData.to;
     if (mailData.subject) gMails[idx].subject = mailData.subject;
     if (mailData.body) gMails[idx].body = mailData.body;
-    _saveMailsToStorage();
+    _saveMails();
 }
 
 function getMailById(mailId) {
@@ -119,6 +124,13 @@ function getMailById(mailId) {
         return mailId === mail.id;
     })
     return Promise.resolve(mail);
+}
+
+function _getMailId(mailId) {
+    var mailIdx = gMails.findIndex(function (mail) {
+        return mailId === mail.id
+    })
+    return mailIdx
 }
 
 function deleteMail(mailId) {
@@ -136,6 +148,14 @@ function onRead(mailId) {
         })
     _saveMails();
 }
+
+function toggelStar(mailId) {
+    getMailById(mailId)
+        .then(mail => {
+            mail.isStarred = !mail.isStarred;
+        })
+    _saveMails();
+}
 /****************************storage****************************************/
 
 function _saveMails() {
@@ -148,8 +168,9 @@ function _loadFromStorage() {
 
 /***************************get mail display************************/
 
-function _getTypeDysplay(mailToDisplay, criteria) {
-    let { txt, display } = criteria;
+function _getTypeDysplay(mailToDisplay, filter) {
+    let { txt, display } = filter;
+    if(!txt || !display) return gMails;
     const mails = mailToDisplay.filter(mail => {
         return display === 'read' ? mail.isRead : display === 'unread' ? !mail.isRead : mail.isRead &&
             mail.body.includes(txt) || mail.subject.includes(txt) || mail.to.includes(txt)
@@ -158,11 +179,13 @@ function _getTypeDysplay(mailToDisplay, criteria) {
 }
 
 function _getMailsByFolder(criteria) {
+    // if (criteria.status === '') return gMails;
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'inbox':
                 return mail.to === loggedinUser.email && !mail.isTrash;
-            case 'sent':
+                case 'sent':
+                console.log(criteria);
                 return mail.from === loggedinUser.email && !mail.isDraft;
             case 'starred':
                 return mail.isStarred;
@@ -172,5 +195,19 @@ function _getMailsByFolder(criteria) {
                 return mail.isDraft;
         }
     });
+    console.log(mails);
+    return mails;
+}
+
+function _sortMails(mails, sortBy) {
+    if (sortBy === 'title') {
+        mails.sort((mailFirst, mailSecond) => {
+            return mailFirst.subject.charAt(0) < mailSecond.subject.charAt(0) ? -1 : 1
+        })
+    } else {
+        mails.sort((mailFirst, mailSecond) => {
+            mailFirst.sentAt - mailSecond.sentAt;
+        })
+    }
     return mails;
 }

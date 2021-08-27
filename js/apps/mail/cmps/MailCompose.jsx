@@ -18,12 +18,11 @@ export class _MailCompose extends React.Component {
     componentDidMount() {
         this.draftInterval = setInterval(this.onSaveDraft, 5000);
         const mailId = this.props.match.params.mailId;
-        console.log(mailId);
         mailService.getMailById(mailId)
             .then(mail => {
                 if (mail) this.setDraftsData(mail);
             })
-        
+
         if (this.props.match.isExact) this.handelForword();
     }
 
@@ -44,14 +43,16 @@ export class _MailCompose extends React.Component {
 
     onSaveDraft = () => {
         const { newMail, isDraftCreate } = this.state;
-        const draftCreated = isDraftCreate ? true : false ;
-        this.setState({ isDraftCreate: true });
-        mailService.sendMail(newMail, true);
+        if (!isDraftCreate) {
+            mailService.sendMail(newMail, true)
+                .then(mailId => this.setState((prevState) => ({ ...prevState, newMail: { ...prevState.newMail, id: mailId }, isDraftCreate: true })))
+        } else {
+            mailService.saveDrafts(newMail, this.state.newMail.id);
+        }
     }
 
     setDraftsData = (mail) => {
-        console.log('hi');
-        this.setState({ id: mail.id, to: mail.to, subject: mail.subject, body: mail.body, isDraftCreate: true })
+        this.setState((prevState) =>({...prevState, newMail:{...prevState.newMail, id: mail.id, to: mail.to, subject: mail.subject, body: mail.body, isDraftCreate: true }}))
     }
 
     onSendMail = () => {
@@ -66,7 +67,6 @@ export class _MailCompose extends React.Component {
 
     render() {
         const { to, subject, body } = this.state.newMail;
-        // if (forword) return <React.Fragment></React.Fragment>
         return (
             <div className={`compose-modal flex`}>
                 <header onClick={this.onCloseCompose}>X</header>
