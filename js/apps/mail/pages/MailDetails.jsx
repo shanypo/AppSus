@@ -5,7 +5,6 @@ import { MailCompose } from '../cmps/MailCompose.jsx';
 export class MailDetails extends React.Component {
     state = {
         mail: null,
-        criteria: null
     }
 
     componentDidMount() {
@@ -23,7 +22,6 @@ export class MailDetails extends React.Component {
         mailService.getMailById(id).then(mail => {
             if (!mail) return this.props.history.push('/')
             this.setState({ mail })
-            // console.log(mail);
         })
     }
 

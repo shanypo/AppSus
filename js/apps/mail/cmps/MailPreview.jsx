@@ -3,38 +3,21 @@ const { Link } = ReactRouterDOM
 
 import { LongTxt } from "./LongTxt.jsx";
 
-export class MailPreview extends React.Component {
-  state = {
-    mail: null,
-  }
-
-  componentDidMount() {
-    this.loadMail();
-  }
-
-  loadMail = () => {
-    const { mail } = this.props;
-    this.setState({ mail });
-  }
-
-  onCheck = (ev) => {
-    ev.stopPropagation();
-  }
-
-  render() {
-    const { mail } = this.state;
-    if (!mail) return <div></div>
-    const classRead = mail.isRead === true ? 'mail-readen' : '';
-    return (
-      <Link to={`/mail/details/${mail.id}`}>
+export function MailPreview({ mail, onToggelStar }) {
+  const classRead = mail.isRead === true ? 'mail-readen' : '';
+  return (
+    <React.Fragment>
       <article className={`mail-preview ${classRead} flex`}>
+    <Link to={mail.isDraft ? `/mail/compose/${mail.id}` : `/mail/details/${mail.id}`}>
         <p>{mail.from}</p>
         <p>{mail.subject}</p>
         <LongTxt body={mail.body} />
         <p>{mail.sentAt}</p>
+    </Link>
+    <button onClick={() => onToggelStar(mail.id)}>
+            {(mail.isStarred) ? <i className="far fa-star"></i> : <i className="fa fa-star"></i>}
+        </button>
       </article>
-      </Link>
-    )
-
-  }
+    </React.Fragment>
+  )
 }
