@@ -24,9 +24,8 @@ export class NotePreview extends React.Component {
         }
 
         return (
-            <Link to={`/keep/edit/${note.id}`}>
-                <DynamicCmp note={note} onDeleteNote={this.props.onDeleteNote} />
-            </Link>
+            <DynamicCmp note={note} onDeleteNote={this.props.onDeleteNote}
+                onChangeColor={this.props.onChangeColor} />
         )
     }
 }

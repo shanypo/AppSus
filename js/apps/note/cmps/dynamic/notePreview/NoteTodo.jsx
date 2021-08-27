@@ -1,4 +1,4 @@
-
+const { Link } = ReactRouterDOM
 import { Todo } from '../../Todo.jsx'
 
 export function NoteTodo({ note, onDeleteNote }) {
@@ -13,7 +13,10 @@ export function NoteTodo({ note, onDeleteNote }) {
 
                 }
             </ul>
-            <button onClick={() => onDeleteNote(note.id)}>Delete Note</button>
+            <div className="note-buttoms">
+                <Link to={`/keep/edit/${note.id}`}><button>Edit</button></Link>
+                <button onClick={(e) => onDeleteNote(e, note.id)}>Delete Note</button>
+            </div>
         </div>
     )
 }
