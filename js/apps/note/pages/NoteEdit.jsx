@@ -11,7 +11,6 @@ export class NoteEdit extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.noteId
-        // console.log('id', id);
         if (!id) return
         noteService.getNoteById(id)
             .then(note => {
@@ -20,13 +19,14 @@ export class NoteEdit extends React.Component {
     }
 
 
+
+
     render() {
         const { note } = this.state
-
         // console.log('note', note);
         return (
             <React.Fragment>
-                <div className='screen' onClick={() => this.goBack()} >
+                <div className='screen' onClick={(ev) => this.goBack(ev)} >
                 </div>
                 <div className='editor'>
                     <h4>Edit your note</h4>

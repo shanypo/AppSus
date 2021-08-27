@@ -10,7 +10,8 @@ export class AddNoteVideo extends React.Component {
             title: 'my video',
             url: 'https://www.youtube.com/embed/yJyClObyUOs',
             isPinned: false,
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            txt: ''
         },
         videos: [
             { title: '', img: '', videoId: '1' },
@@ -63,7 +64,7 @@ export class AddNoteVideo extends React.Component {
                         <VideoResult selectedVideo={selectedVideo} idx={idx} key={video.videoId} video={video} onSelectVideo={this.onSelectVideo} />
                     )}
                 </section>
-
+                <textarea placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 <button onClick={this.onSaveNote}>Save Note</button>
             </div>
         )

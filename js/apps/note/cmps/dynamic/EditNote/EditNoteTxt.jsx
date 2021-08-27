@@ -23,9 +23,9 @@ export class EditNoteTxt extends React.Component {
 
     render() {
         const { note } = this.state
-        // console.log('note', note);
+        const classNote = `note ${note.style.backgroundColor}`
         return (
-            <div>
+            <div className={classNote}>
                 <div>
                     <label htmlFor="title">Title: </label>
                     <input value={note.info.title} id="title" type="text" name="title" placeholder="title" onChange={this.handleChange} />

@@ -1,9 +1,19 @@
+.pinned {
+    border: 2px solid gray;
+    margin-bottom: 50px;
+    padding: 15px;
+}
+
 .note-list {
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    column-count: 5;
+    column-gap: 40px;
 }
 
 .note {
+    display: inline-block;
+    /* flex-direction: column; */
     border: 1px solid black;
     width: 200px;
     padding: 5px;

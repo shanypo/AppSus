@@ -4,13 +4,6 @@ import { VideoResult } from '../../VideoResult.jsx'
 
 export class EditNoteVideo extends React.Component {
     state = {
-        info: {
-            title: 'my video',
-            searchKey: 'beatles',
-            url: 'https://www.youtube.com/embed/yJyClObyUOs',
-            isPinned: false,
-            backgroundColor: '#fff'
-        },
         videos: [
             { title: '', img: '', videoId: '1' },
             { title: '', img: '', videoId: '2' },
@@ -28,10 +21,11 @@ export class EditNoteVideo extends React.Component {
             .then(videosData => this.setState(prevState => ({ ...prevState, videos: videosData })));
     }
 
-    handleChangeTitle = ({ target }) => {
+    handleChange = ({ target }) => {
         const value = target.value
+        const field = target.name
         let newInfo = this.state.note.info
-        newInfo.title = value
+        newInfo[field] = value
         this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
     }
     handleChangeSearch = ({ target }) => {
@@ -62,9 +56,10 @@ export class EditNoteVideo extends React.Component {
         const videosDisplay = this.state.videos
         const selectedVideo = this.state.selectedVideo
         const note = this.state.note
+        const classNote = `note ${note.style.backgroundColor}`
         return (
-            <div>
-                <input value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChangeTitle} />
+            <div className={classNote}>
+                <input value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
                 <form >
                     <input value={note.searchKey} type="text" name="searchKey"
                         placeholder="Search a YT video" onChange={this.handleChangeSearch} />
@@ -75,7 +70,7 @@ export class EditNoteVideo extends React.Component {
                         <VideoResult selectedVideo={selectedVideo} idx={idx} key={video.videoId} video={video} onSelectVideo={this.onSelectVideo} />
                     )}
                 </section>
-
+                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 <button onClick={this.onSaveNote}>Save Note</button>
             </div>
         )

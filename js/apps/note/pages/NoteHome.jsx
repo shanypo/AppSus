@@ -25,21 +25,25 @@ export class NoteHome extends React.Component {
             .then(() => this.loadNotes())
     }
 
+    onPinNote = (ev, noteId) => {
+        ev.stopPropagation()
+        noteService.updateNotePinned(noteId)
+            .then(() => this.loadNotes())
+    }
+
     onChangeColor = (ev, noteId, color) => {
         ev.stopPropagation()
         noteService.updateNoteColor(noteId, color)
             .then(() => this.loadNotes())
     }
 
-
-
     render() {
         return (
             <React.Fragment>
                 <AddNote loadNotes={this.loadNotes} />
-                <Link to='/keep/edit'> link</Link>
+                {/* <Link to='/keep/edit'> link</Link> */}
                 <NoteList notes={this.state.notes} onDeleteNote={this.onDeleteNote}
-                    onChangeColor={this.onChangeColor} />
+                    onChangeColor={this.onChangeColor} onPinNote={this.onPinNote} />
             </React.Fragment>
         );
     }

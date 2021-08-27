@@ -1,52 +1,62 @@
 import { noteService } from "../../../services/noteService.js"
+import { InputTodo } from "../../InputTodo.jsx"
 export class EditNoteTodo extends React.Component {
 
     state = {
         note: this.props.note
     }
 
-    handleChange = ({ target }) => {
-        const field = target.name
+    handleChangeTitle = ({ target }) => {
         const value = target.value
         let newInfo = this.state.note.info
-        newInfo[field] = value
-        // console.log('newInfo', newInfo);
+        newInfo.title = value
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
+    }
+
+    handleChangeTodo = ({ target }) => {
+        const idx = target.name
+        const value = target.value
+        const newInfo = this.state.note.info
+        newInfo.todos[idx].txt = value
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
+    }
+
+    onAddTodo = () => {
+        const newInfo = this.state.note.info
+        newInfo.todos.push({ txt: '', DoneAt: null })
+        this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
+    }
+
+    onDeleteTodo = (ev, idx) => {
+        ev.preventDefault()
+        if (!idx) return
+        const newInfo = this.state.note.info
+        newInfo.todos.splice(idx, 1)
         this.setState(prevState => ({ note: { ...prevState.note, info: newInfo } }))
     }
 
     onSaveNote = () => {
-        // console.log('this.props', this.props);
         noteService.updateNote(this.state.note)
             .then(() => this.props.goBack())
 
     }
 
     render() {
+        const { todos } = this.state.note.info
         const { note } = this.state
-        // console.log('note', note);
+        const classNote = `note ${note.style.backgroundColor}`
         return (
-            <div>
-                <div>
-                    <label htmlFor="title">Title: </label>
-                    <input value={note.info.title} id="title" type="text" name="title" placeholder="title" onChange={this.handleChange} />
-                </div>
-                <input value={note.info.title} type="text" name="todos" placeholder="Enter comma seperated todos" onChange={this.handleChange} />
-                <button onClick={this.onSaveNote}>Save Note</button>
-            </div>
+            <form className={classNote} onSubmit={this.onSaveNote}>
+                <input type="text" name="title" placeholder="title" onChange={this.handleChangeTitle} />
+                <h4>Todos:</h4>
+                {todos.map((todo, idx) =>
+                    <InputTodo key={idx} todo={todo} idx={idx}
+                        handleChangeTodo={this.handleChangeTodo} onDeleteTodo={this.onDeleteTodo} />
+                )}
+                <p onClick={this.onAddTodo}> + add todo</p>
+                <button>Save Note</button>
+            </form>
         )
     }
 }
 
-// id: _makeId(),
-// type: "todos",
-// isPinned: true,
-// info: {
-//     title: "Get my stuff together",
-//     todos: [
-//         { txt: "Driving liscence", doneAt: null },
-//         { txt: "Coding power", doneAt: 187111111 }
-//     ]
-// },
-// style: {
-//     backgroundColor: "#00d"
-// }

@@ -25,7 +25,7 @@ export class NotePreview extends React.Component {
 
         return (
             <DynamicCmp note={note} onDeleteNote={this.props.onDeleteNote}
-                onChangeColor={this.props.onChangeColor} />
+                onChangeColor={this.props.onChangeColor} onPinNote={this.props.onPinNote} />
         )
     }
 }

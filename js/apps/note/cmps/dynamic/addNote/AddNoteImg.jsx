@@ -4,10 +4,11 @@ export class AddNoteImg extends React.Component {
 
     state = {
         info: {
-            title: 'my video',
+            title: '',
             url: 'https://picsum.photos/200/300',
             isPinned: false,
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            txt: ''
         },
 
     }
@@ -32,7 +33,8 @@ export class AddNoteImg extends React.Component {
                     <input type="text" name="title" placeholder="title" onChange={this.handleChange} />
                     <img src={info.url} />
                     <input type="text" name="url"
-                        placeholder="Type photo Url" onChange={this.handleChange} />
+                        placeholder="Type photo Url" onChange={this.handleChange} value={info.url} />
+                    <textarea placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 </form>
 
                 <button onClick={this.onSaveNote}>Save Note</button>

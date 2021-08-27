@@ -9,14 +9,15 @@ export const noteService = {
     getNoteById,
     updateNote,
     updateNoteTodo,
-    updateNoteColor
+    updateNoteColor,
+    updateNotePinned
     // getNextCarId test
 }
 
 import { storageService } from '../../../services/storage.service.js'
 import { _makeId } from '../../../services/util.service.js'
 
-let gNotes;
+// let gNotes;
 const KEY = 'noteDB';
 const dafultNotes = [
     {
@@ -37,7 +38,8 @@ const dafultNotes = [
         isPinned: true,
         info: {
             url: "https://picsum.photos/200/300",
-            title: "Bobi and Me"
+            title: 'Thailand',
+            txt: 'this is my photo from my trip in Thailand'
         },
         style: {
             backgroundColor: "#00d"
@@ -64,7 +66,8 @@ const dafultNotes = [
         isPinned: false,
         info: {
             title: "My Crazy Video",
-            url: 'https://www.youtube.com/embed/yJyClObyUOs'
+            url: 'https://www.youtube.com/embed/yJyClObyUOs',
+            txt: 'I like this video, na na na , more things , na na na and even more things ...'
         },
         style: {
             backgroundColor: "#00d"
@@ -77,19 +80,22 @@ const dafultNotes = [
         isPinned: true,
         info: {
             url: 'https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg',
-            title: 'My Dog'
+            title: 'My Dog',
+            txt: 'I love my dog he is very sweet :)'
         },
         style: {
             backgroundColor: "#00d"
         }
     },
 ];
+let gNotes = _loadNotesFromStorage() || dafultNotes;
 
 // LOAD NOTES //
 
 function query() {
     const storageNotes = _loadNotesFromStorage()
     gNotes = (storageNotes) ? storageNotes : dafultNotes;
+
     // if (filterBy) {
     //     let { vendor, minSpeed, maxSpeed } = filterBy
     //     maxSpeed = maxSpeed ? maxSpeed : Infinity
@@ -115,6 +121,8 @@ function deleteNote(noteId) {
 
 
 function _getNoteIdxById(noteId) {
+    console.log('noteId', noteId);
+    console.log('gNotes', gNotes);
     return gNotes.findIndex(function (note) {
         return noteId === note.id
     })
@@ -132,6 +140,13 @@ function updateNote(newNote) {
 function updateNoteColor(noteId, color) {
     const noteIdx = _getNoteIdxById(noteId)
     gNotes[noteIdx].style.backgroundColor = color
+    _saveNotesToStorage()
+    return Promise.resolve()
+}
+
+function updateNotePinned(noteId) {
+    const noteIdx = _getNoteIdxById(noteId)
+    gNotes[noteIdx].isPinned = !gNotes[noteIdx].isPinned
     _saveNotesToStorage()
     return Promise.resolve()
 }
@@ -170,32 +185,32 @@ function _createTxtNote(title, txt, isPinned = false, backgroundColor = '#fff') 
 
 // TODO NOTE //
 
-function saveNewTodoNote(info) { // {title, isPinned, backgroundColor, todos}
-    const newTxtNote = _createTodoNote(info.title, info.todos)
-    gNotes.push(newTxtNote)
+function saveNewTodoNote(todo) { // {title, isPinned, backgroundColor, todos}
+    todo.id = _makeId()
+    gNotes.push(todo)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 
-function _createTodoNote(title, todosStr, isPinned = false, backgroundColor = '#fff') {
-    const todosArray = todosStr.split(',')
-    let todos = [];
-    todosArray.map(todo => {
-        todos.push({ txt: todo, doneAt: null })
-    })
-    return {
-        id: _makeId(),
-        type: "todos",
-        isPinned,
-        info: {
-            title,
-            todos
-        },
-        style: {
-            backgroundColor
-        }
-    }
-}
+// function _createTodoNote(title, todosStr, isPinned = false, backgroundColor = '#fff') {
+//     const todosArray = todosStr.split(',')
+//     let todos = [];
+//     todosArray.map(todo => {
+//         todos.push({ txt: todo, doneAt: null })
+//     })
+//     return {
+//         id: _makeId(),
+//         type: "todos",
+//         isPinned,
+//         info: {
+//             title,
+//             todos
+//         },
+//         style: {
+//             backgroundColor
+//         }
+//     }
+// }
 
 // UPDATE TODO //
 
@@ -209,20 +224,21 @@ function updateNoteTodo(noteId, todoIdx, newTodo) {
 // VIDEO TODO //
 
 function saveNewVideoNote(info) {  // info: {title, searchKey, url, isPinned, backgroundColor }
-    const newVideoNote = _createVideoNote(info.title, info.url, info.searchKey)
+    const newVideoNote = _createVideoNote(info.title, info.url, info.searchKey, info.txt)
     gNotes.push(newVideoNote)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 
-function _createVideoNote(title, url, searchKey, isPinned = false, backgroundColor = '#fff') {
+function _createVideoNote(title, url, searchKey, txt, isPinned = false, backgroundColor = '#fff') {
     return {
         id: _makeId(),
         type: 'video',
         isPinned,
         info: {
             title,
-            url
+            url,
+            txt
         },
         style: {
             backgroundColor
@@ -234,20 +250,21 @@ function _createVideoNote(title, url, searchKey, isPinned = false, backgroundCol
 // IMG TODO //
 
 function saveNewImgNote(info) {  // info: {title, url, isPinned, backgroundColor }
-    const newVideoNote = _createImgNote(info.title, info.url)
+    const newVideoNote = _createImgNote(info.title, info.url, info.txt)
     gNotes.push(newVideoNote)
     _saveNotesToStorage()
     return Promise.resolve()
 }
 
-function _createImgNote(title, url, isPinned = false, backgroundColor = '#fff') {
+function _createImgNote(title, url, txt, isPinned = false, backgroundColor = '#fff') {
     return {
         id: _makeId(),
         type: "img",
         isPinned,
         info: {
             url,
-            title
+            title,
+            txt
         },
         style: {
             backgroundColor

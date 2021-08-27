@@ -5,7 +5,6 @@ export class Todo extends React.Component {  //{ txt: "Driving liscence", doneAt
         note: this.props.note
     }
     onDone = (e) => {
-        console.log('e', e);
         e.stopPropagation();
         let { todo } = this.state;
         todo.doneAt = todo.doneAt ? null : new Date().toLocaleString()
