@@ -1,52 +1,83 @@
 import { mailService } from '../services/mail.service.js'
+const { withRouter } = ReactRouterDOM;
 
-export class MailCompose extends React.Component {
+export class _MailCompose extends React.Component {
     state = {
         onForword: null,
-        email: '',
-        subject: '',
-        body: ''
+        isDraftCreate: false,
+        newMail: {
+            id: null,
+            to: '',
+            subject: '',
+            body: ''
+        }
     }
 
+    draftInterval;
+
     componentDidMount() {
-        const {mail} = this.props;
-        if(!mail) return;
-        this.handelForword();
+        this.draftInterval = setInterval(this.onSaveDraft, 5000);
+        const mailId = this.props.match.params.mailId;
+        console.log(mailId);
+        mailService.getMailById(mailId)
+            .then(mail => {
+                if (mail) this.setDraftsData(mail);
+            })
+        
+        if (this.props.match.isExact) this.handelForword();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.draftInterval);
     }
 
     handelForword = () => {
         this.setState({ onForword: true })
-        const {mail} = this.props;
+        const { mail } = this.props;
     }
 
     handelChange = (ev) => {
         const field = ev.target.name;
-        this.setState({ [field]: ev.target.value })
+        const val = ev.target.value;
+        this.setState((prevState) => ({ ...prevState, newMail: { ...prevState.newMail, [field]: val } }));
+    }
+
+    onSaveDraft = () => {
+        const { newMail, isDraftCreate } = this.state;
+        const draftCreated = isDraftCreate ? true : false ;
+        this.setState({ isDraftCreate: true });
+        mailService.sendMail(newMail, true);
+    }
+
+    setDraftsData = (mail) => {
+        console.log('hi');
+        this.setState({ id: mail.id, to: mail.to, subject: mail.subject, body: mail.body, isDraftCreate: true })
     }
 
     onSendMail = () => {
-        const { email, subject, body } = this.state;
-        const newMail = { to:email, subject, body };
+        const newMail = this.state.newMail;
         mailService.sendMail(newMail);
         this.props.history.push('/mail');
     }
-    
-    onCloseCompose = () =>{
+
+    onCloseCompose = () => {
         this.props.history.push('/mail');
     }
 
     render() {
-        const {forword} = this.state;
-        if(forword) return <React.Fragment></React.Fragment>
+        const { to, subject, body } = this.state.newMail;
+        // if (forword) return <React.Fragment></React.Fragment>
         return (
             <div className={`compose-modal flex`}>
                 <header onClick={this.onCloseCompose}>X</header>
-                <input type='email' name='email' placeholder='to:' onChange={this.handelChange} value={this.state.email}/>
-                <input type="text" name="subject" placeholder="Type subject here" onChange={this.handelChange}/>
-                <textarea className='body-text' placeholder='Type message text here' name='body' cols="30" rows="10" onChange={this.handelChange}></textarea>
+                <input required type='email' name='to' placeholder='to:' value={to} onChange={this.handelChange} />
+                <input type="text" name="subject" placeholder="Type subject here" value={subject} onChange={this.handelChange} />
+                <textarea className='body-text' placeholder='Type message text here' name='body' value={body} cols="30" rows="10" onChange={this.handelChange}></textarea>
                 <button onClick={this.onSendMail}>Send</button>
             </div>
         )
     }
 
 }
+
+export const MailCompose = withRouter(_MailCompose);

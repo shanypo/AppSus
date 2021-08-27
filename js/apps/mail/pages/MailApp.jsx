@@ -11,7 +11,8 @@ export class MailApp extends React.Component {
     state = {
         mails: null,
         criteria: {
-            status: 'all',
+            status: 'inbox',
+            display: 'all',
             txt: '',
             isRead: false,
             isStared: false,
@@ -24,6 +25,14 @@ export class MailApp extends React.Component {
         this.loadMails();
     }
 
+    componentDidUpdate(prevProps) {
+        let status = this.props.match.params.mailFilter
+        if (prevProps.match.params.mailFilter !== status) {
+            const currStatus = this.getUrlStatus();
+            this.getCurrStatus(currStatus);
+        }
+    }
+
     loadMails() {
         mailService.query(this.state.criteria)
             .then((mails) => {
@@ -32,38 +41,43 @@ export class MailApp extends React.Component {
 
     }
 
-    onUnReadMails = () => {
-        this.setState({status: 'unread'});
-        mailService.query(this.state.criteria.status)
-        .then((countUnRead) => {
-            this.setState({ countUnRead })
-        })
+    getCurrStatus = (currStatus) => {
+        const status = ['inbox', 'sent', 'starred', 'drafts'];
+        status.includes(currStatus) ? this.setState(PrevState => ({ criteria: { ...PrevState.criteria, status: currStatus } }),
+            () => { this.loadMails() }) : '';  
     }
+    getUrlStatus = () => {
+        return this.props.match.params.mailFilter;
+    }
+
+    // onUnReadMails = () => {
+    //     this.setState({status: 'unread'});
+    //     mailService.query(this.state.criteria.status)
+    //     .then((countUnRead) => {
+    //         this.setState({ countUnRead })
+    //     })
+    // }
 
     onSetFilter = (criteria) => {
         this.setState({ criteria })
+        this.loadMails();
     }
 
     onDisplay = (val) => {
-        this.setState(PrevState => ({ criteria: { ...PrevState.criteria, status: val } }), () => {
+        this.setState(PrevState => ({ criteria: { ...PrevState.criteria, display: val } }), () => {
             this.loadMails();
         })
     }
-
-    // onFilterType = (type) => {
-
-
-    // }
 
     render() {
         const { mails, criteria } = this.state;
         if (!mails) return <div>Loading...</div>;
         return (
             <React.Fragment>
-                <MailFilter displayVal={criteria.status} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} />
+                <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} />
                 <section className="flex justify-center align-center">
                     <nav>
-                        <NavBar className='nav-bar' countUnRead={this.onUnReadMails}/>
+                        <NavBar className='nav-bar' countUnRead={this.onUnReadMails} />
                     </nav>
                     <MailList mails={mails} criteria={criteria} />
                 </section>

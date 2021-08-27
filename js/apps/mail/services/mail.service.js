@@ -8,7 +8,8 @@ export const mailService = {
     toggelRead,
     onRead,
     sendMail,
-    query
+    query,
+    saveDrafts
 }
 
 let gDummyMails = [
@@ -19,6 +20,11 @@ let gDummyMails = [
         body: 'hello there',
         isRead: false,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        isTrash: false,
+        isStarred: false,
+        isDraft: false,
+        to: 'user@appsus.com',
+        from: 'looply@gmail.com'
     },
     {
         id: _makeId(),
@@ -27,7 +33,11 @@ let gDummyMails = [
         body: 'get your car insurance',
         isRead: true,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
-        to: 'shanypo@gmail.com'
+        to: 'user@appsus.com',
+        from: 'looply@gmail.com',
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
     },
     {
         id: _makeId(),
@@ -36,9 +46,14 @@ let gDummyMails = [
         body: 'hello there',
         isRead: false,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
-        to: 'shanypo@gmail.com'
+        to: 'user@appsus.com',
+        from: 'shany@gmail.com',
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
     },
 ]
+
 const KEY = 'mailDB';
 let gMails = _loadFromStorage() || gDummyMails;
 
@@ -49,8 +64,8 @@ const loggedinUser = {
 
 function query(criteria) {
     if (!criteria) return Promise.resolve(gMails);
-    const { status, txt, labels, isStarred} = criteria;
-    let mailToDisplay = _getTypeDysplay(status);
+    let mailToDisplay = _getMailsByFolder(criteria)
+    mailToDisplay = _getTypeDysplay(mailToDisplay, criteria);
     return Promise.resolve(mailToDisplay);
 }
 
@@ -67,14 +82,36 @@ function getEmails() {
     return Promise.resolve(gMails);
 }
 
-function sendMail(newMail) {
-    newMail.id = _makeId();
-    newMail.from = loggedinUser.email;
-    newMail.isRead = false;
-    newMail.sentAt = new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate();
-    gMails.push(newMail);
-    console.log(gMails);
+function sendMail(newMail, isDraft = false, draftCreated = false) {
+    const mail = {
+        id: _makeId(),
+        to: newMail.to,
+        from: loggedinUser.email,
+        subject: newMail.subject ? newMail.subject : 'No subject',
+        body: newMail.body ? newMail.body : 'No Messege',
+        isRead: true,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        isTrash: false,
+        isStarred: false,
+        isDraft
+    }
+
+    if (isDraft) {
+        _saveMails();
+        return Promise.resolve(mail.id);
+    }
+
+    mail.isDraft = false;
+    gMails.push(mail);
     _saveMails();
+}
+
+function saveDrafts(mailData, mailId) {
+    const idx = getMailById(mailId);
+    if (mailData.to) gMails[idx].to = mailData.to;
+    if (mailData.subject) gMails[idx].subject = mailData.subject;
+    if (mailData.body) gMails[idx].body = mailData.body;
+    _saveMailsToStorage();
 }
 
 function getMailById(mailId) {
@@ -109,24 +146,31 @@ function _loadFromStorage() {
     return storageService.loadFromStorage(KEY);
 }
 
-/***************************get type display************************/
+/***************************get mail display************************/
 
-function _getTypeDysplay(type) {
-    switch (type) {
-        case 'all':
-            return gMails;
-        case 'read':
-            return gMails.filter(mail => {
-                return mail.isRead
-            });
-        case 'unread':
-            return gMails.filter(mail => {
-                return !mail.isRead
-            });
-        case 'txt':
-            return gMails.filter(mail => {
-                return !mail.isRead
-            });
-    }
+function _getTypeDysplay(mailToDisplay, criteria) {
+    let { txt, display } = criteria;
+    const mails = mailToDisplay.filter(mail => {
+        return display === 'read' ? mail.isRead : display === 'unread' ? !mail.isRead : mail.isRead &&
+            mail.body.includes(txt) || mail.subject.includes(txt) || mail.to.includes(txt)
+    });
+    return mails;
+}
 
+function _getMailsByFolder(criteria) {
+    let mails = gMails.filter(mail => {
+        switch (criteria.status) {
+            case 'inbox':
+                return mail.to === loggedinUser.email && !mail.isTrash;
+            case 'sent':
+                return mail.from === loggedinUser.email && !mail.isDraft;
+            case 'starred':
+                return mail.isStarred;
+            case 'trash':
+                return mail.isTrash;
+            case 'drafts':
+                return mail.isDraft;
+        }
+    });
+    return mails;
 }

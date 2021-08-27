@@ -19,7 +19,7 @@ export function AppHome() {
                 <Switch>
                     {/* <Route component={MailHome} path="/mail" /> */}
                     <Route component={MailDetails} path="/mail/details/:mailId" />
-                    <Route component={MailApp} path="/mail" />
+                    <Route component={MailApp} path="/mail/:mailFilter?" />
                     <Route component={NoteEdit} path="/keep/edit/:noteId?" />
                     <Route component={NoteHome} path="/keep" />
                     {/* <Route component={BooksHome} path="/books" /> */}
