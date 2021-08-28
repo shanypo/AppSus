@@ -22,6 +22,11 @@
     margin-right: 10px;
 }
 
+.mails-details-btn:hover{
+    -webkit-animation: headShake 1s;
+    animation: headShake 1s; 
+}
+
 @media screen and (min-width: 700px) {
     .mail-info {
         gap: 20px;

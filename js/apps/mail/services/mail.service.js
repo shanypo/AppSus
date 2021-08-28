@@ -76,7 +76,7 @@ let gDummyMails = [
         id: _makeId(),
         subject: 'code review',
         body: 'מצ"ב cr מתוקן',
-        isRead: false,
+        isRead: true,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
         to: 'shanypo@gmail.com',
         from: 'user@appsus.com',
@@ -112,13 +112,25 @@ let gDummyMails = [
         id: _makeId(),
         subject: 'Spotify',
         body: 'Playlists made just for you',
-        isRead: false,
+        isRead: true,
         sentAt: new Date(1519211809934).toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
         to: 'user@appsus.com',
         from: 'no-reply@spotify.com',
         isTrash: false,
         isStarred: true,
         isDraft: false
+    },
+    {
+        id: _makeId(),
+        subject: 'Master in psychology',
+        body: 'Hello, i would like to aplly',
+        isRead: true,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'harvard@psychology.com',
+        from: 'user@appsus.com',
+        isTrash: false,
+        isStarred: true,
+        isDraft: true
     },
 ]
 
