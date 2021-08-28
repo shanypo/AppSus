@@ -22,9 +22,9 @@
     margin-right: 10px;
 }
 
-.mails-details-btn:hover{
+.mails-details-btn:hover {
     -webkit-animation: headShake 1s;
-    animation: headShake 1s; 
+    animation: headShake 1s;
 }
 
 @media screen and (min-width: 700px) {
@@ -35,9 +35,11 @@
     .mail-details {
         width: 80%;
     }
+    
     .mail-details p:first-of-type {
-        font-size: 1.43rem;
+        font-size: 1.2rem;
     }
+
     .mail-details p:nth-of-type(2) {
         font-size: 1rem;
     }
