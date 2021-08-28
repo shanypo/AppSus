@@ -8,18 +8,20 @@ export function NoteImg({ note, onDeleteNote, onChangeColor, onPinNote }) {
             <img src={note.info.url} />
             <p>{note.info.txt}</p>
             <div className="note-buttoms">
-                <Link to={`/keep/edit/${note.id}`}><button>Edit</button></Link>
-                <button onClick={(e) => onDeleteNote(e, note.id)}>Delete Note</button>
-                <button onClick={(e) => onPinNote(e, note.id)}>Pin</button>
-                <div className="Colors">
-                    <div className="white" onClick={(e) => onChangeColor(e, note.id, 'white')}>white</div>
-                    <div className="red" onClick={(e) => onChangeColor(e, note.id, 'red')}>red</div>
-                    <div className="orange" onClick={(e) => onChangeColor(e, note.id, 'orange')}>yellow</div>
-                    <div className="yellow" onClick={(e) => onChangeColor(e, note.id, 'yellow')}>blue</div>
-                    <div className="green" onClick={(e) => onChangeColor(e, note.id, 'green')}>blue</div>
-                    <div className="blue" onClick={(e) => onChangeColor(e, note.id, 'blue')}>blue</div>
-                    <div className="purple" onClick={(e) => onChangeColor(e, note.id, 'purple')}>blue</div>
-                    <div className="pink" onClick={(e) => onChangeColor(e, note.id, 'pink')}>blue</div>
+                <div className="edit-buttoms">
+                    <Link to={`/keep/edit/${note.id}`}><img src="../../../../img/icons/edit.png" /></Link>
+                    <button onClick={(e) => onDeleteNote(e, note.id)}><img src="../../../../img/icons/trash.png" /></button>
+                    <button onClick={(e) => onPinNote(e, note.id)}><img src="../../../../img/icons/pin.png" /></button>
+                </div>
+                <div className="colors">
+                    <div className="white" onClick={(e) => onChangeColor(e, note.id, 'white')}></div>
+                    <div className="red" onClick={(e) => onChangeColor(e, note.id, 'red')}></div>
+                    <div className="orange" onClick={(e) => onChangeColor(e, note.id, 'orange')}></div>
+                    <div className="yellow" onClick={(e) => onChangeColor(e, note.id, 'yellow')}></div>
+                    <div className="green" onClick={(e) => onChangeColor(e, note.id, 'green')}></div>
+                    <div className="blue" onClick={(e) => onChangeColor(e, note.id, 'blue')}></div>
+                    <div className="purple" onClick={(e) => onChangeColor(e, note.id, 'purple')}></div>
+                    <div className="pink" onClick={(e) => onChangeColor(e, note.id, 'pink')}></div>
                 </div>
             </div>
         </div>

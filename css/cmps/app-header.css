@@ -63,6 +63,14 @@
 
 /* RESPONSIVE */
 
+/*tablet*/
+
+@media screen and (min-width: 700px) {
+    .logo {
+        margin-left: 20px;
+    }
+}
+
 /* Mobile  */
 
 @media (max-width: 700px) {

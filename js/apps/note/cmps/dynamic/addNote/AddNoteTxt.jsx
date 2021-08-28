@@ -36,7 +36,7 @@ export class AddNoteTxt extends React.Component {
             <div className="add-note-txt ">
                 <form className="add-txt flex direction-col align-center " onSubmit={this.onSaveNote}>
                     <input className="note-title" type="search" name="title" placeholder="Title" onChange={this.handleChange} />
-                    <textarea placeholder="Take a note..." name="txt" onChange={this.handleChange}></textarea>
+                    <textarea placeholder="Think of something?" name="txt" onChange={this.handleChange}></textarea>
                     <button className="save-note">Save Note</button>
                 </form>
             </div>

@@ -2,7 +2,7 @@ import { AddNotePreview } from './AddNotePreview.jsx'
 
 export class AddNote extends React.Component {
     state = {
-        type: 'video'
+        type: 'img'
     }
 
     onChangeType = (type) => {

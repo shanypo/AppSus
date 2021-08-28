@@ -44,17 +44,17 @@ export class EditNoteTodo extends React.Component {
     render() {
         const { todos } = this.state.note.info
         const { note } = this.state
-        const classNote = `note ${note.style.backgroundColor}`
+        const classNote = `note-editor flex direction-col ${note.style.backgroundColor}`
         return (
             <form className={classNote} onSubmit={this.onSaveNote}>
-                <input type="text" name="title" placeholder="title" onChange={this.handleChangeTitle} />
+                <input className="note-title" type="text" name="title" placeholder="title" onChange={this.handleChangeTitle} />
                 <h4>Todos:</h4>
                 {todos.map((todo, idx) =>
                     <InputTodo key={idx} todo={todo} idx={idx}
                         handleChangeTodo={this.handleChangeTodo} onDeleteTodo={this.onDeleteTodo} />
                 )}
                 <p onClick={this.onAddTodo}> + add todo</p>
-                <button>Save Note</button>
+                <button className="save-note">Save Note</button>
             </form>
         )
     }
