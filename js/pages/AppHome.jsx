@@ -8,6 +8,8 @@ import { AppHeader } from '../cmps/AppHeader.jsx'
 import { MailDetails } from '../apps/mail/pages/MailDetails.jsx'
 import { MailApp } from '../apps/mail/pages/MailApp.jsx'
 import { AppFooter } from '../cmps/AppFooter.jsx'
+import { BookHome } from '../apps/book/pages/BookHome.jsx'
+import { BookDetails } from '../apps/book/pages/BookDetails.jsx'
 
 export function AppHome() {
 
@@ -23,7 +25,8 @@ export function AppHome() {
                     <Route component={MailApp} path="/mail/:mailFilter?" />
                     <Route component={NoteEdit} path="/keep/edit/:noteId?" />
                     <Route component={NoteHome} path="/keep" />
-                    {/* <Route component={BooksHome} path="/books" /> */}
+                    <Route component={BookDetails} path="/book/:bookId" />
+                    <Route component={BookHome} path="/book" />
                     {/* <Route component={AppAbout} path="/books" /> */}
                     <Route component={Home} path="/" />
                 </Switch>
