@@ -26,7 +26,6 @@
     align-items: center;
     flex-direction: row;
     gap: 0 30px;
-    padding-right: 50px;
     height: 100%;
 }
 
@@ -43,6 +42,7 @@
     display: flex;
     align-items: center;
     color: white;
+    justify-content: center;
 }
 
 .main-nav li .active {
@@ -68,6 +68,9 @@
         color: white;
         box-shadow: inset 0px -5px 0 white;
     }
+    .main-nav {
+        padding-right: 50px;
+    }
 }
 
 /* Mobile  */
@@ -80,7 +83,7 @@
         right: 0;
         flex-direction: column;
         min-width: 240px;
-        background-color: rgba(41, 41, 41, 0.9);
+        background-color: #548c7ce8;
         height: 100vh;
         box-shadow: 0px 0px 0px transparent;
         transform: translateX(100%);
