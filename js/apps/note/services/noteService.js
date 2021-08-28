@@ -20,11 +20,24 @@ const KEY = 'noteDB';
 const dafultNotes = [
     {
         id: _makeId(),
+        type: "img",
+        isPinned: true,
+        info: {
+            url: "././././img/panda.jpeg",
+            title: 'Panda',
+            txt: 'this is my dog Panda and I her so much :)'
+        },
+        style: {
+            backgroundColor: 'purple'
+        }
+    },
+    {
+        id: _makeId(),
         type: "txt",
         isPinned: true,
         info: {
-            title: "Learn Coding",
-            txt: "Fullstack Me Baby!"
+            title: "My Story",
+            txt: "One day Jhon woke up and then na na na, and more na na na. after that he was na na na..."
         },
         style: {
             backgroundColor: 'green'
@@ -40,7 +53,7 @@ const dafultNotes = [
             txt: 'this is my photo from my trip in Thailand'
         },
         style: {
-            backgroundColor: 'purple'
+            backgroundColor: 'yellow'
         }
     },
     {
@@ -51,7 +64,10 @@ const dafultNotes = [
             title: "Get my stuff together",
             todos: [
                 { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Clean Dishes", doneAt: 187111111 },
+                { txt: "go to the gym", doneAt: null },
+                { txt: "call my ex", doneAt: null },
+                { txt: "buy food", doneAt: 187111111 }
             ]
         },
         style: {
@@ -61,9 +77,9 @@ const dafultNotes = [
     {
         id: _makeId(),
         type: 'video',
-        isPinned: false,
+        isPinned: true,
         info: {
-            title: "My Crazy Video",
+            title: "The Beatles!",
             url: 'https://www.youtube.com/embed/yJyClObyUOs',
             txt: 'I like this video, na na na , more things , na na na and even more things ...'
         },
@@ -79,10 +95,109 @@ const dafultNotes = [
         info: {
             url: 'https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg',
             title: 'My Dog',
-            txt: 'I love my dog he is very sweet :)'
+            txt: 'I love my dog he is very sweet :), his name is Panda'
         },
         style: {
             backgroundColor: 'pink'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "img",
+        isPinned: false,
+        info: {
+            url: "https://picsum.photos/200/300",
+            title: 'Me and my family',
+            txt: 'I love my  family, na na na ...'
+        },
+        style: {
+            backgroundColor: 'pink'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "todos",
+        isPinned: true,
+        info: {
+            title: "Making a new Track",
+            todos: [
+                { txt: "write lyrics", doneAt: 187111111 },
+                { txt: "make choros chords change", doneAt: 187111111 },
+                { txt: "sketch a basic sample", doneAt: 187111111 },
+                { txt: "recored singer", doneAt: 187111111 },
+                { txt: "production", doneAt: null },
+                { txt: "mixing", doneAt: null },
+
+            ]
+        },
+        style: {
+            backgroundColor: 'orange'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "img",
+        isPinned: true,
+        info: {
+            url: "././././img/panda2.jpeg",
+            title: 'Panda',
+            txt: 'dogs are the best animals in the world'
+        },
+        style: {
+            backgroundColor: 'blue'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "txt",
+        isPinned: false,
+        info: {
+            title: "Miss You",
+            txt: "na na na Iso miss you, you are my friend na na na , and even more na na na.."
+        },
+        style: {
+            backgroundColor: 'white'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "txt",
+        isPinned: false,
+        info: {
+            title: "Panda",
+            txt: "Panda is My Dog and I so like her! :) Panda is the best dog in the universe.."
+        },
+        style: {
+            backgroundColor: 'green'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "txt",
+        isPinned: true,
+        info: {
+            title: "New Song",
+            txt: "Love you baby, love you so much... na na na na... love you baby, love you so mouch..."
+        },
+        style: {
+            backgroundColor: 'white'
+        }
+    },
+    {
+        id: _makeId(),
+        type: "todos",
+        isPinned: true,
+        info: {
+            title: "make Dinner",
+            todos: [
+                { txt: "Cut onion", doneAt: 187111111 },
+                { txt: "mix eggs", doneAt: null },
+                { txt: "eat and clean dishes", doneAt: null },
+
+            ]
+        },
+        style: {
+            backgroundColor: 'blue'
         }
     },
 ];
