@@ -1,0 +1,4 @@
+.main-mail{
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 100px 1fr;
+}

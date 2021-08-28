@@ -23,3 +23,7 @@
 .mail-preview .fa-star{
     color: grey;
 }
+
+.not-star img{
+    fill: whitesmoke;
+}
