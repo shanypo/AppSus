@@ -1,7 +1,6 @@
 .main-mail {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .mail-criteria {
@@ -47,14 +46,24 @@
 
 .compose-btn {
     font-family: 'poppines-semi-bold';
-    color: #dbe1e2;;
+    color: #dbe1e2;
     border-radius: 7px;
-    width: 111px;
+    width: 100px;
     font-size: 0.9rem;
-
     text-align: center;
     background-color: #bf6c3b;
+    margin-top: 17px;
 }
+
+.compose-btn:hover {
+    -webkit-animation: headShake 1s;
+    animation: headShake 1s;
+}
+
+.mail-read {
+    width: 15px;
+}
+
 @media screen and (min-width: 700px) {
     .main-mail {
         height: 60vh;
@@ -86,12 +95,14 @@
         flex-direction: unset;
         gap: 15px;
     }
-    .folders-nav{
+    .folders-nav {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
-
+    .mail-criteria .display {
+        margin: 0 20px;
+    }
 }
 
 /*desktop*/
