@@ -24,9 +24,8 @@
 /* MAIL */
 
 @import './apps/mails/mail-preview.css';
-@import './apps/mails/mail-home.css';
+/* @import './apps/mails/mail-home.css'; */
 @import './apps/mails/mail-compose.css';
-@import './apps/mails/mail-filters.css';
 @import './pages/mail-home.css';
 /* COMPONENTS */
 

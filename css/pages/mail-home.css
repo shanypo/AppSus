@@ -2,3 +2,19 @@
     grid-template-columns: 100px 1fr;
     grid-template-rows: 100px 1fr;
 }
+
+.mail-criteria{
+    text-align: center;
+    margin-bottom: 20px;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.mail-list{
+    grid-column: 2;
+}
+
+.folders-nav{
+    grid-column: 1;
+    grid-row: 2;
+}

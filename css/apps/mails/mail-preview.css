@@ -7,9 +7,16 @@
     color: rgb(57, 56, 56);
 }
 
-.mail-preview :hover{
+.mail-preview a:hover{
     box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     z-index: 1;
+    background-color: #b8bebf75;
+}
+.mail-preview a{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 13px;
 }
 
 .mail-readen{
@@ -26,4 +33,11 @@
 
 .not-star img{
     fill: whitesmoke;
+}
+
+@media screen and (min-width: 700px) {
+    .mail-preview{
+        font-size: 0.85rem;
+    }
+  
 }

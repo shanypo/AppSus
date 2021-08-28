@@ -86,10 +86,10 @@ export class MailApp extends React.Component {
             <React.Fragment>
                 <section className="main-mail grid">
                 <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} criteria={criteria}/>
-                    <nav>
+                    <nav className="folders-nav">
                         <NavBar className='nav-bar' countUnRead={countUnRead} />
                     </nav>
-                    <MailList mails={mails} criteria={criteria} onToggelStar={this.onToggelStar} />
+                    <MailList mails={mails} criteria={criteria} onToggelStar={this.onToggelStar} className="mail-list"/>
                 </section>
             </React.Fragment>
         )
