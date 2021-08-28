@@ -4,18 +4,21 @@ export class LongTxt extends React.Component {
     }
 
     toggleIsTxtShown = () => {
-        this.setState((prevState) =>({ isLongTxtShown: !prevState.isLongTxtShown }))
+        this.setState((prevState) => ({ isLongTxtShown: !prevState.isLongTxtShown }))
     }
 
     render() {
         const { isLongTxtShown } = this.state;
-        const { body } = this.props;
-        console.log();
+        const { body, subject } = this.props;
         return (
-            <p>
-                {isLongTxtShown ? body : body.substring(0, 80)}
-            </p>
-
+            <React.Fragment>
+                <p>
+                    {isLongTxtShown ? subject : subject.substring(0, 15)}
+                </p>
+                <p>
+                    {isLongTxtShown ? body : body.substring(0, 50)}
+                </p>
+            </React.Fragment>
         )
     }
 }

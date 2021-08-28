@@ -1,6 +1,8 @@
 .home-nav {
     justify-content: space-around;
     margin: 80px 0;
+    height: 50vh;
+    align-items: center;
 }
 
 .font-size{
@@ -30,7 +32,7 @@
         font-size: 3rem;
     }
     
-    home-nav img{
+    .home-nav img{
         width: 13rem;
         height: 13rem;
     }

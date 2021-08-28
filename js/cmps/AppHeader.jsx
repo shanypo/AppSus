@@ -2,17 +2,12 @@ const { NavLink, withRouter, Link } = ReactRouterDOM
 
 // import { eventBusService } from '../services/event-bus-service.js'
 class _AppHeader extends React.Component {
-  // state = {
-  //   isMenuOpen: false
-  // }
-
-  onMenuClick = () => {
-    // const newMenuOpen = !this.state.isMenuOpen
-    // this.setState({ isMenuOpen: newMenuOpen })
-    document.querySelector('body').classList.toggle('menu-open');
+  state = {
+    isMenuOpen: false
   }
-  render() {
 
+  render() {
+    const { isMenuOpen } = this.state;
     return (
       <React.Fragment>
         <Link to="/"><div className="logo flex align-center pointer">
@@ -24,7 +19,8 @@ class _AppHeader extends React.Component {
           <li><NavLink to="/book" className="nav-mail">Books</NavLink></li>
           <li><NavLink to="/keep" className="nav-keep">Keep</NavLink></li>
         </ul>
-        <button onClick={this.onMenuClick} className="btn-menu-toggle theme-color">☰</button>
+        <button onClick={() => {
+          this.setState({isMenuOpen: !isMenuOpen})}} className={ this.state.isMenuOpen ? 'menu-open btn-menu-toggle theme-color' : 'btn-menu-toggle theme-color'}>☰</button>
       </React.Fragment>
     )
   }

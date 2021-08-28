@@ -54,8 +54,6 @@ export class MailDetails extends React.Component {
                 <article className={'mail-details'}>
                     <button className="mails-details-btn" onClick={this.onBack}>Go Back</button>
                     <button className="mails-details-btn" onClick={this.onDeleteMail}>Delete</button>
-                    {/* <Route component={() => <MailCompose mail={mail} />} exact path={`/mail/details/:mailId/forword`} /> */}
-                    {/* <Link to={`/mail/details/${mail.id}/forword`}><button>Forword</button></Link> */}
                     <p>From: {mail.from}</p>
                     <p>Subject: {mail.subject}</p>
                     <p>{mail.body}</p>

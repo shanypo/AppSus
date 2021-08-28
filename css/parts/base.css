@@ -33,6 +33,11 @@ button, li {
     cursor: pointer;
 }
 
+::selection {
+    color: #012615;
+    background: #BF6C3B;
+}
+
 /*mobile*/
 
 .main-layout {

@@ -16,11 +16,10 @@ export const mailService = {
 let gDummyMails = [
     {
         id: _makeId(),
-        from: 'Google',
         subject: 'Miss you',
-        body: 'hello there',
+        body: 'hello there darling would you like to come over for this vaction???',
         isRead: false,
-        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        sentAt: new Date(1719811809934).toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
         isTrash: false,
         isStarred: false,
         isDraft: false,
@@ -29,9 +28,8 @@ let gDummyMails = [
     },
     {
         id: _makeId(),
-        from: 'Google',
         subject: 'AIG just for you',
-        body: 'get your car insurance',
+        body: 'get your car insurance now in sale',
         isRead: true,
         sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
         to: 'user@appsus.com',
@@ -42,7 +40,64 @@ let gDummyMails = [
     },
     {
         id: _makeId(),
-        from: 'Google',
+        subject: 'Internet Connection Anywhere, Anytime',
+        body: `hello dear students,
+        I've published new FREE lesson in youtube - https://www.youtube.com/watch?v=pcMw7ED60WE
+        The lesson is about operators in Java with live code examples. You are going to learn a lot of interesting about operators in Java and how to work with them. I'm sure you will love it! :)
+        I would appreciate your likes and comments to the video. And do not forget to subscribe to the channel to not miss other lessons :) 
+        Regards,
+        Andrey`,
+        isRead: false,
+        sentAt: new Date(1619211809934).toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'user@appsus.com',
+        from: 'tranmin@gmail.com',
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
+    },
+    {
+        id: _makeId(),
+        subject: 'תו ירוק-סטודיו פוזיטיב',
+        body: `מתאמנים/ות יקרים/ות,
+        עקב העלייה הניכרת בתחלואה הנחיות התו הירוק חזרו.
+        לכן לפני כניסה לאימון תתבקשו להציג את התו הירוק- תקפידו להכין אותו לפני כדי שזה לא יעכב אתכם/ן בכניסה.
+        בנוסף הקפידו על הטיית מסיכה על הפנים לפני הכניסה לאימונים וברחבת ההמתנה
+        עזרו לנו לשמור על פעילות הסטודיו.
+        תודה הנהלת סטודיו פוזיטיב.`,
+        isRead: false,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'user@appsus.com',
+        from: 'contact@tazman.co.il',
+        isTrash: false,
+        isStarred: true,
+        isDraft: false
+    },
+    {
+        id: _makeId(),
+        subject: 'code review',
+        body: 'מצ"ב cr מתוקן',
+        isRead: false,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'shanypo@gmail.com',
+        from: 'user@appsus.com',
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
+    },
+    {
+        id: _makeId(),
+        subject: 'Broadway Show!!',
+        body: 'We are welcoming you to celebrate out 60 anniversary here in New-York!!',
+        isRead: true,
+        sentAt: new Date().toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'shiriMaymon@gmail.com',
+        from:'user@appsus.com',
+        isTrash: false,
+        isStarred: false,
+        isDraft: false
+    },
+    {
+        id: _makeId(),
         subject: 'working together',
         body: 'hello there',
         isRead: false,
@@ -51,6 +106,18 @@ let gDummyMails = [
         from: 'shany@gmail.com',
         isTrash: false,
         isStarred: false,
+        isDraft: false
+    },
+    {
+        id: _makeId(),
+        subject: 'Spotify',
+        body: 'Playlists made just for you',
+        isRead: false,
+        sentAt: new Date(1519211809934).toLocaleString('default', { month: 'short' }) + ' ' + new Date().getDate(),
+        to: 'user@appsus.com',
+        from: 'no-reply@spotify.com',
+        isTrash: false,
+        isStarred: true,
         isDraft: false
     },
 ]
