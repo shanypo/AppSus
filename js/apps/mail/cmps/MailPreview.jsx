@@ -15,7 +15,8 @@ export function MailPreview({ mail, onToggelStar }) {
         <p>{mail.sentAt}</p>
     </Link>
     <button onClick={() => onToggelStar(mail.id)}>
-            {(mail.isStarred) ? <i className="far fa-star"></i> : <i className="fa fa-star"></i>}
+    <img src="../../img/star.svg"/>
+            {(mail.isStarred) ? <i className="is-star"></i> : <i className="not-star"></i>}
         </button>
       </article>
     </React.Fragment>

@@ -1,0 +1,23 @@
+.home-nav {
+    justify-content: space-around;
+    animation-play-state: paused;
+}
+
+.font-size {
+    font-size: 3rem;
+}
+
+home-nav img{
+    width: 10rem;
+    height: 10rem;
+}
+@media screen and (max-width: 700px){
+    .font-size{
+        font-size: 1rem;
+    }
+    
+    .home-nav img{
+        width: 5rem;
+        height: 5rem;
+    }
+}

@@ -1,8 +1,12 @@
+const { Link } = ReactRouterDOM
+
 export function AppFooter() {
     return (
         <React.Fragment>
-            <div className="logo flex align-center"><img src="../../img/logo.jpg" /></div>
-            <p> &#169; Shany Pollack & Michael Uzan</p>
+            <Link to="/">
+                <div className="logo flex align-center pointer"><img src="../../img/logo1.png" /></div>
+                <p> &#169; Shany Pollack & Michael Uzan</p>
+            </Link>
         </React.Fragment>
     )
 }

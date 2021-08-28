@@ -1,26 +1,35 @@
 export class MailFilter extends React.Component {
     state = {
-        display: 'all',
-        txt: '',
-        sortBy: ''
+        criteria: {
+            status: '',
+            display: 'all',
+            txt: '',
+            isRead: '',
+            isStared: false,
+            lables: null,
+            sortBy: ''
+        }
     }
 
+    componentDidMount () {
+        const {criteria} = this.props;
+        this.setState({criteria})
+    }
     handleChange = (ev) => {
         ev.preventDefault();
         const field = ev.target.name;
         const value = ev.target.value;
-        console.log(field);
-        this.setState({[field]:value}, () => {
-            console.log(this.state);
-            this.props.onSetFilter(this.state);
-        })
-    }
+        this.setState(prevState => ({ criteria: { ...prevState.criteria, [field]: value } }), () => {
+            console.log(this.state.criteria);
+            this.props.onSetFilter(this.state.criteria);
+        });
 
-    // onFilter = (ev) => {
-    //     ev.preventDefault();
-    //     console.log(this.state.criteria);
-    //     this.props.onSetFilter(this.state.criteria);
-    // }
+        // this.setState((prevState) => ({ ...prevState, criteria: { ...prevState.criteria, [field]: value }
+        // }), () => {
+        //     console.log(this.state.criteria);
+        //     this.props.onSetFilter(this.state.criteria);
+        // });
+    }
 
     render() {
         const { onDisplay, displayVal } = this.props;

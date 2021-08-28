@@ -2,10 +2,7 @@ import { MailList } from '../cmps/MailList.jsx';
 import { mailService } from '../services/mail.service.js';
 import { MailFilter } from '../cmps/MailFilter.jsx';
 import { NavBar } from '../cmps/NavBar.jsx';
-import { MailCompose } from '../cmps/MailCompose.jsx';
 import { eventBusService } from '../../../services/event-bus-service.js';
-
-const { Route, Link, Switch } = ReactRouterDOM
 
 export class MailApp extends React.Component {
     state = {
@@ -15,10 +12,10 @@ export class MailApp extends React.Component {
             isRead: '',
             isStared: false,
             lables: null,
+            display: 'all',
+            txt: '',
+            sortBy: '',
         },
-        display: 'all',
-        txt: '',
-        sortBy: '',
         countUnRead: null
     }
 
@@ -35,7 +32,8 @@ export class MailApp extends React.Component {
     }
 
     loadMails() {
-        mailService.query(this.state.criteria)
+        const {criteria, display, txt, sortBy} = this.state;
+        mailService.query(criteria)
             .then((mails) => {
                 this.setState({ mails })
                 this.setUnreadCount(mails);
@@ -86,7 +84,7 @@ export class MailApp extends React.Component {
         if (!mails) return <div>Loading...</div>;
         return (
             <React.Fragment>
-                <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} />
+                <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} criteria={criteria}/>
                 <section className="flex justify-center align-center">
                     <nav>
                         <NavBar className='nav-bar' countUnRead={countUnRead} />

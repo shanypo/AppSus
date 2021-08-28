@@ -3,7 +3,7 @@
 /* THEME COLOR */
 
 .theme-color {
-    background-color: rgb(33, 158, 188);
+    background-color: #548C7C;
 }
 
 /* flex helpers */
@@ -45,3 +45,11 @@
 .pointer {
     cursor: pointer;
 }
+
+/*ANIMATION */
+
+.home-animation:hover{
+    -webkit-animation: rubberBand 1s;
+    animation: rubberBand 1s;
+}
+

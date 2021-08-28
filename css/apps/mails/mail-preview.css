@@ -16,7 +16,7 @@
     font-weight: unset;
 }
 
-.mail-preview .far fa-star:before{
+.mail-preview.far fa-star:before{
     color: yellow;
 }
 

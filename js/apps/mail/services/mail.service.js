@@ -63,13 +63,11 @@ const loggedinUser = {
     fullname: 'hanna montana'
 }
 
-function query(criteria, sortBy, display, txt) {
-    const filter = {display, txt}
-    if (!criteria) return Promise.resolve(gMails);
-    let mailToDisplay = _getMailsByFolder(criteria)
-    console.log(mailToDisplay);
-    if(filter) mailToDisplay = _getTypeDysplay(mailToDisplay, filter);
-    if(sortBy)mailToDisplay = _sortMails(mailToDisplay, sortBy)
+function query(criteria) {
+    // if (!criteria) return Promise.resolve(gMails);
+    let mailToDisplay = _getMailsByFolder(criteria);
+    mailToDisplay = _getTypeDysplay(mailToDisplay, criteria);
+    mailToDisplay = _sortMails(mailToDisplay, criteria.sortBy)
     _saveMails();
     return Promise.resolve(mailToDisplay);
 }
@@ -168,9 +166,8 @@ function _loadFromStorage() {
 
 /***************************get mail display************************/
 
-function _getTypeDysplay(mailToDisplay, filter) {
-    let { txt, display } = filter;
-    if(!txt || !display) return gMails;
+function _getTypeDysplay(mailToDisplay, criteria) {
+    let { txt, display } = criteria;
     const mails = mailToDisplay.filter(mail => {
         return display === 'read' ? mail.isRead : display === 'unread' ? !mail.isRead : mail.isRead &&
             mail.body.includes(txt) || mail.subject.includes(txt) || mail.to.includes(txt)
@@ -179,13 +176,11 @@ function _getTypeDysplay(mailToDisplay, filter) {
 }
 
 function _getMailsByFolder(criteria) {
-    // if (criteria.status === '') return gMails;
     let mails = gMails.filter(mail => {
         switch (criteria.status) {
             case 'inbox':
                 return mail.to === loggedinUser.email && !mail.isTrash;
-                case 'sent':
-                console.log(criteria);
+            case 'sent':
                 return mail.from === loggedinUser.email && !mail.isDraft;
             case 'starred':
                 return mail.isStarred;
@@ -195,7 +190,6 @@ function _getMailsByFolder(criteria) {
                 return mail.isDraft;
         }
     });
-    console.log(mails);
     return mails;
 }
 
