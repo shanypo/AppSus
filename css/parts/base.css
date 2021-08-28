@@ -43,13 +43,6 @@ button, li {
     margin: 0 auto;
 }
 
-/*medum*/
-
-@media screen and (min-width: 500px) {
-    .main-layout {
-        max-width: 400px;
-    }
-}
 
 /*tablet*/
 
