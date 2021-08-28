@@ -35,7 +35,7 @@ export class EditNoteImg extends React.Component {
                     <input className="note-title" value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
                     <img src={note.info.url} />
                     <div className="edit-add-img-link flex direction-row align-center ">
-                        <img className="link-icon" src="../../../../img/icons/link.png" />
+                        <img className="link-icon" src="././././img/icons/link.png" />
                         <input value={note.info.url} type="text" name="url"
                             placeholder="Type photo Url" onChange={this.handleChange} />
                     </div>

@@ -22,10 +22,10 @@ export class AddNote extends React.Component {
                             <AddNotePreview type={type} loadNotes={this.props.loadNotes} />
                         </div>
                         <ul className="clean-list flex space-around direction-row">
-                            <li onClick={() => this.onChangeType('txt')}><img src="../../../../img/icons/txt.png" /></li>
-                            <li onClick={() => this.onChangeType('video')}><img src="../../../../img/icons/video.jpg" /></li>
-                            <li onClick={() => this.onChangeType('todos')}><img src="../../../../img/icons/todo.png" /></li>
-                            <li onClick={() => this.onChangeType('img')}><img src="../../../../img/icons/img.png" /></li>
+                            <li onClick={() => this.onChangeType('txt')}><img src="././././img/icons/txt.png" /></li>
+                            <li onClick={() => this.onChangeType('video')}><img src="././././img/icons/video.jpg" /></li>
+                            <li onClick={() => this.onChangeType('todos')}><img src="././././img/icons/todo.png" /></li>
+                            <li onClick={() => this.onChangeType('img')}><img src="././././img/icons/img.png" /></li>
                         </ul>
                     </div>
                 </div>

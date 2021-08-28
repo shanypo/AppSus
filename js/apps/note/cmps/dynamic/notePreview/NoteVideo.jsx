@@ -9,9 +9,9 @@ export function NoteVideo({ note, onDeleteNote, onPinNote, onChangeColor }) {
             <p>{note.info.txt}</p>
             <div className="note-buttoms">
                 <div className="edit-buttoms">
-                    <Link to={`/keep/edit/${note.id}`}><img src="../../../../img/icons/edit.png" /></Link>
-                    <button onClick={(e) => onDeleteNote(e, note.id)}><img src="../../../../img/icons/trash.png" /></button>
-                    <button onClick={(e) => onPinNote(e, note.id)}><img src="../../../../img/icons/pin.png" /></button>
+                    <Link to={`/keep/edit/${note.id}`}><img src="././././img/icons/edit.png" /></Link>
+                    <button onClick={(e) => onDeleteNote(e, note.id)}><img src="././././img/icons/trash.png" /></button>
+                    <button onClick={(e) => onPinNote(e, note.id)}><img src="././././img/icons/pin.png" /></button>
                 </div>
                 <div className="colors">
                     <div className="white" onClick={(e) => onChangeColor(e, note.id, 'white')}></div>

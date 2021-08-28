@@ -76,7 +76,7 @@ export class AddNoteVideo extends React.Component {
                 <form >
                     <input type="search" name="searchKey"
                         placeholder="Search a YT video" onChange={this.handleChangeSearch} />
-                    <button onClick={this.onSearchVideo}><img src="../../../img/icons/search-icon.png" /></button>
+                    <button onClick={this.onSearchVideo}><img src="./././img/icons/search-icon.png" /></button>
                 </form>
                 <button className="save-note" onClick={this.onSaveNote}>Save Note</button>
             </div>

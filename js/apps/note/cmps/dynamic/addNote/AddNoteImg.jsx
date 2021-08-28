@@ -41,7 +41,7 @@ export class AddNoteImg extends React.Component {
                     <input className="note-title" type="text" name="title" placeholder="Title" onChange={this.handleChange} />
                     <img className="show-img" src={info.url} />
                     <div className="add-img-link flex direction-row space-around">
-                        <img className="link-icon" src="../../../../img/icons/link.png" />
+                        <img className="link-icon" src="././././img/icons/link.png" />
                         <input type="text" name="url"
                             placeholder="Type photo Url" onChange={this.handleChange} value={info.url} />
                     </div>
