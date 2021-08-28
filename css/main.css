@@ -6,8 +6,8 @@
 /* PAGES */
 
 /* HOME */
-@import './pages/home.css';
 
+@import './pages/home.css';
 /* COMPONENTS */
 
 @import './cmps/app-header.css';
@@ -18,8 +18,10 @@
 @import './apps/notes/NoteEdit.css';
 /* COMPONENTS */
 
+@import './apps/notes/cmps.note/note-filter.css';
 @import './apps//notes/cmps.note/videoNote.css';
 @import './apps/notes/cmps.note/addNote.css';
+@import './apps/notes/cmps.note/add-note/add-txt-note.css';
 @import './apps/notes/cmps.note/addVideoNote.css';
 /* MAIL */
 
@@ -31,4 +33,5 @@
 
 /* BOOKS */
 
+@import './apps/book/book.css'
 /* COMPONENTS */

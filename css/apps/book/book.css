@@ -1,0 +1,92 @@
+/* BOOK ADD */
+
+.book-search {
+    padding: 15px;
+}
+
+.book-search button {
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+/* FILTER */
+
+.book-filter {
+    padding: 15px;
+    background-color: rgb(188, 230, 247);
+}
+
+.book-filter label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.book-filter button {
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #fff;
+    border: 1px solid black;
+}
+
+.book-filter button:hover {
+    background-color: rgb(177, 177, 177);
+}
+
+/* BOOK APP */
+
+.book-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.books-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-preview {
+    border: 2px solid black;
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+.book-preview:hover {
+    background-color: rgb(185, 185, 185);
+}
+
+/* BOOK DETAILS */
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-preview {
+    background-color: darkcyan;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+.user-preview button {
+    margin: 5px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}

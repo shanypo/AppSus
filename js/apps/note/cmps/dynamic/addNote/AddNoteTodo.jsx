@@ -59,15 +59,15 @@ export class AddNoteTodo extends React.Component {
     render() {
         const { todos } = this.state.note.info
         return (
-            <form className="add-todo" onSubmit={this.onSaveNote}>
-                <input type="text" name="title" placeholder="title" onChange={this.handleChangeTitle} />
+            <form className="add-todo flex direction-col align-center" onSubmit={this.onSaveNote}>
+                <input className="note-title" type="text" name="title" placeholder="Title" onChange={this.handleChangeTitle} />
                 <h4>Todos:</h4>
                 {todos.map((todo, idx) =>
                     <InputTodo key={idx} todo={todo} idx={idx}
                         handleChangeTodo={this.handleChangeTodo} onDeleteTodo={this.onDeleteTodo} />
                 )}
                 <p onClick={this.onAddTodo}> + add todo</p>
-                <button>Save Note</button>
+                <button className="save-note">Save Note</button>
             </form>
         )
     }
