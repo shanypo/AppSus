@@ -19,3 +19,18 @@
     font-family: Icons;
     src: url(../../fonts/Brands/fa-solid-900.ttf);
 }
+
+@font-face {
+    font-family: poppines-medium;
+    src: url(../../fonts/Poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: poppines-semi-bold;
+    src: url(../../fonts/Poppins/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: poppines-light;
+    src: url(../../fonts/Poppins/Poppins-Light.ttf);
+}

@@ -69,11 +69,11 @@ export class _MailCompose extends React.Component {
         const { to, subject, body } = this.state.newMail;
         return (
             <div className={`compose-modal flex`}>
-                <header onClick={this.onCloseCompose}>X</header>
-                <input required type='email' name='to' placeholder='to:' value={to} onChange={this.handelChange} />
-                <input type="text" name="subject" placeholder="Type subject here" value={subject} onChange={this.handelChange} />
-                <textarea className='body-text' placeholder='Type message text here' name='body' value={body} cols="30" rows="10" onChange={this.handelChange}></textarea>
-                <button onClick={this.onSendMail}>Send</button>
+                <header onClick={this.onCloseCompose}className="close-btn pointer">X</header>
+                <input className="font-inpot" required type='email' name='to' placeholder='to:' value={to} onChange={this.handelChange} />
+                <input className="font-inpot" type="text" name="subject" placeholder="Type subject here" value={subject} onChange={this.handelChange} />
+                <textarea className='body-text font-inpot' placeholder='Type message text here' name='body' value={body} cols="30" rows="10" onChange={this.handelChange}></textarea>
+                <button className="send-btn" onClick={this.onSendMail}>Send</button>
             </div>
         )
     }

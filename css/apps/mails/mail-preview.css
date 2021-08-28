@@ -2,12 +2,12 @@
     background-color: white;
     border-bottom: 1px solid lightgrey;
     justify-content: space-between;
-    padding: 0 24px;
     font-weight: bold;
     color: rgb(57, 56, 56);
+    font-size: 0.8rem;
 }
 
-.mail-preview a:hover{
+.mail-preview:hover{
     box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     z-index: 1;
     background-color: #b8bebf75;
@@ -40,4 +40,13 @@
         font-size: 0.85rem;
     }
   
+}
+
+/*desktop*/
+
+@media screen and (min-width: 1200px) {
+    .mail-preview{
+        font-size: 1.2rem;
+        padding: 0 24px;
+    }
 }

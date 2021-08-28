@@ -84,7 +84,7 @@ export class MailApp extends React.Component {
         if (!mails) return <div>Loading...</div>;
         return (
             <React.Fragment>
-                <section className="main-mail grid">
+                <section className="main-mail grid main-layout">
                 <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} criteria={criteria}/>
                     <nav className="folders-nav">
                         <NavBar className='nav-bar' countUnRead={countUnRead} />

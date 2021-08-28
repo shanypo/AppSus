@@ -1,6 +1,7 @@
-const {  Route, Link } = ReactRouterDOM
+const { Route, Link } = ReactRouterDOM
 import { mailService } from '../services/mail.service.js';
 import { MailCompose } from '../cmps/MailCompose.jsx';
+import { NavBar } from '../cmps/NavBar.jsx';
 
 export class MailDetails extends React.Component {
     state = {
@@ -46,15 +47,20 @@ export class MailDetails extends React.Component {
         if (!mail) return <div>Loading...</div>
         this.onRead();
         return (
-            <article className={'mail-details'}>
-                <Route component={() => <MailCompose mail={mail}/>} exact path={`/mail/details/:mailId/forword`}/>
-                <button onClick={this.onBack}>Go Back</button>
-                <button onClick={this.onDeleteMail}>Delete</button>
-                <Link to={`/mail/details/${mail.id}/forword`}><button>Forword</button></Link>
-                <p>{mail.subject}</p>
-                <p>{mail.from}</p>
-                <p>{mail.body}</p>
-            </article>
+            <div className="mail-info flex">
+                <nav className="folders-nav">
+                    <NavBar className='nav-bar'/>
+                </nav>
+                <article className={'mail-details'}>
+                    <button className="mails-details-btn" onClick={this.onBack}>Go Back</button>
+                    <button className="mails-details-btn" onClick={this.onDeleteMail}>Delete</button>
+                    {/* <Route component={() => <MailCompose mail={mail} />} exact path={`/mail/details/:mailId/forword`} /> */}
+                    {/* <Link to={`/mail/details/${mail.id}/forword`}><button>Forword</button></Link> */}
+                    <p>From: {mail.from}</p>
+                    <p>Subject: {mail.subject}</p>
+                    <p>{mail.body}</p>
+                </article>
+            </div>
         )
 
     }
