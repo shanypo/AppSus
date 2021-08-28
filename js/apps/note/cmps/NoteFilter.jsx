@@ -25,7 +25,7 @@ export class NoteFilter extends React.Component {
           <option value="txt">Text</option>
           <option value="video">Video</option>
         </select>
-        <label htmlFor="notes-drop-down"><img src="../../../../img/icons/filter.png" /></label>
+        <label htmlFor="notes-drop-down"><img src="././././img/icons/filter.png" /></label>
 
 
         <input
@@ -36,7 +36,7 @@ export class NoteFilter extends React.Component {
           value={searchKey}
           onChange={this.handleChange}
         />
-        <label htmlFor='by-search'><img src="../../../img/icons/search-icon.png" /></label>
+        <label htmlFor='by-search'><img src="./././img/icons/search-icon.png" /></label>
 
       </div>
 

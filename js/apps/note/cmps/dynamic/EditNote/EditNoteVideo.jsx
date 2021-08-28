@@ -63,7 +63,7 @@ export class EditNoteVideo extends React.Component {
                 <form className="flex direction-row align-center">
                     <input value={note.searchKey} type="text" name="searchKey"
                         placeholder="Search a YT video" onChange={this.handleChangeSearch} />
-                    <button onClick={this.onSearchVideo}><img id="buttom-seacrh-video" src="../../../img/icons/search-icon.png" /></button>
+                    <button onClick={this.onSearchVideo}><img id="buttom-seacrh-video" src="./././img/icons/search-icon.png" /></button>
                 </form>
                 <section>
                     {videosDisplay.map((video, idx) =>

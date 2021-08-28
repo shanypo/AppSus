@@ -2,7 +2,6 @@ import { NotePreview } from './NotePreview.jsx'
 export function NoteList({ notes, onDeleteNote, onChangeColor, onPinNote }) {
     return (<React.Fragment>
         <section className="all-notes-display">
-            {/* <h3>Pinned</h3> */}
             <section className='pinned note-list main-layout'>
                 {notes.map(note => {
                     if (note.isPinned) {
