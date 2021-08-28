@@ -14,10 +14,10 @@ export function MailPreview({ mail, onToggelStar, onToggelRead}) {
           <p>{mail.sentAt}</p>
         </Link>
         <button onClick={() => onToggelRead(mail.id)}>
-          <img className="mail-read" src={`./img/${mail.isRead ? 'drafts' : 'envalopHome'}.svg`} />
+          <img className="mail-read" src={`/./img/${mail.isRead ? 'drafts' : 'envalopHome'}.svg`} />
         </button>
         <button onClick={() => onToggelStar(mail.id)}>
-          <img className="mail-star" src={`./img/${mail.isStarred ? 'is-starred' : 'not-starred'}.svg`} />
+          <img className="mail-star" src={`/./img/${mail.isStarred ? 'is-starred' : 'not-starred'}.svg`} />
         </button>
       </article>
     </React.Fragment>
