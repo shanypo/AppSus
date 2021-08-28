@@ -33,11 +33,11 @@ export class AddNoteTxt extends React.Component {
 
     render() {
         return (
-            <div>
-                <form className="add-txt" onSubmit={this.onSaveNote}>
-                    <input type="search" name="title" placeholder="title" onChange={this.handleChange} />
-                    <textarea name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
-                    <button>Save Note</button>
+            <div className="add-note-txt ">
+                <form className="add-txt flex direction-col align-center " onSubmit={this.onSaveNote}>
+                    <input className="note-title" type="search" name="title" placeholder="Title" onChange={this.handleChange} />
+                    <textarea placeholder="Take a note..." name="txt" onChange={this.handleChange}></textarea>
+                    <button className="save-note">Save Note</button>
                 </form>
             </div>
         )

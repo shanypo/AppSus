@@ -1,0 +1,35 @@
+/* SEARCH */
+
+.filter-notes {
+    margin-bottom: 40px;
+    display: flex;
+}
+
+/* SEARCH DROP DOWN MENU */
+
+/* SEARCH INPUT */
+
+.filter-notes input, .filter-notes select {
+    font-family: montserrat;
+    font-size: 1.187rem;
+    border: 0px solid white;
+    box-shadow: 0 2px 0 rgb(214, 211, 211);
+}
+
+.filter-notes input {
+    width: 150px;
+    margin-left: 25px;
+}
+
+.filter-notes input:focus-visible, .filter-notes select:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+/* SEARCH ICONS  */
+
+.filter-notes img {
+    width: 25px;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 2px 0 rgb(214, 211, 211)
+}
