@@ -32,6 +32,10 @@
     align-items: center;
 }
 
+.grid{
+    display: grid;
+}
+
 /* list-helpers */
 
 .clean-list {
@@ -48,8 +52,14 @@
 
 /*ANIMATION */
 
-.home-animation:hover{
+.home-animation:hover {
     -webkit-animation: rubberBand 1s;
     animation: rubberBand 1s;
 }
 
+/*BUTTONS*/
+
+button {
+    background-color: unset;
+    border: unset;
+}

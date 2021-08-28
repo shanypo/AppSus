@@ -8,15 +8,14 @@ export function MailPreview({ mail, onToggelStar }) {
   return (
     <React.Fragment>
       <article className={`mail-preview ${classRead} flex`}>
-    <Link to={mail.isDraft ? `/mail/compose/${mail.id}` : `/mail/details/${mail.id}`}>
-        <p>{mail.from}</p>
-        <p>{mail.subject}</p>
-        <LongTxt body={mail.body} />
-        <p>{mail.sentAt}</p>
-    </Link>
-    <button onClick={() => onToggelStar(mail.id)}>
-    <img src="../../img/star.svg"/>
-            {(mail.isStarred) ? <i className="is-star"></i> : <i className="not-star"></i>}
+        <Link to={mail.isDraft ? `/mail/compose/${mail.id}` : `/mail/details/${mail.id}`}>
+          <p>{mail.from}</p>
+          <p>{mail.subject}</p>
+          <LongTxt body={mail.body} />
+          <p>{mail.sentAt}</p>
+        </Link>
+        <button onClick={() => onToggelStar(mail.id)}>
+          <img className="mail-star" src={`./img/${mail.isStarred ? 'is-starred' : 'not-starred'}.svg`} />
         </button>
       </article>
     </React.Fragment>

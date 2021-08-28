@@ -28,10 +28,6 @@ a:hover {
     text-decoration: none;
 }
 
-p {
-    margin: 0 0 1rem;
-}
-
 button, li {
     cursor: pointer;
 }

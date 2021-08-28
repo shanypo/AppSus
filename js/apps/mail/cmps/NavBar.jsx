@@ -7,8 +7,8 @@ export function NavBar({countUnRead}) {
     return (
         <React.Fragment>
             <Route exact component={MailCompose} path="/mail/compose/:mailId?"/>
+            <nav className="folders-nav pointer">
             <button><Link to={`/mail/compose`}> Compose +</Link></button>
-            <nav className='pointer'>
             <NavLink to="/mail/inbox"><button>inbox</button></NavLink>
             <NavLink to="/mail/sent"><button>sent</button></NavLink>
             <NavLink to="/mail/starred"><button>starred</button></NavLink>

@@ -1,23 +1,37 @@
 .home-nav {
     justify-content: space-around;
-    animation-play-state: paused;
+    margin: 80px 0;
 }
 
-.font-size {
-    font-size: 3rem;
+.font-size{
+    font-size: 1rem;
 }
 
-home-nav img{
-    width: 10rem;
-    height: 10rem;
+.home-nav img{
+    width: 4rem;
+    height: 4rem;
 }
-@media screen and (max-width: 700px){
+
+@media screen and (min-width: 700px) {
     .font-size{
-        font-size: 1rem;
+        font-size: 1.87rem;
     }
     
     .home-nav img{
-        width: 5rem;
-        height: 5rem;
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+/*desktop*/
+
+@media screen and (min-width: 1200px) {
+    .font-size {
+        font-size: 3rem;
+    }
+    
+    home-nav img{
+        width: 13rem;
+        height: 13rem;
     }
 }

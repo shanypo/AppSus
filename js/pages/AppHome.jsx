@@ -31,7 +31,7 @@ export function AppHome() {
                     <Route component={Home} path="/" />
                 </Switch>
             </main>
-            <footer className="main-footer main-layout flex direction-col theme-color">
+            <footer className="main-footer main-layout flex direction-col justify-center theme-color">
                 <AppFooter />
             </footer>
         </Router>
