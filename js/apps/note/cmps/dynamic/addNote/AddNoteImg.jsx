@@ -36,13 +36,16 @@ export class AddNoteImg extends React.Component {
     render() {
         const { info } = this.state.note
         return (
-            <div className="flex direction-col align-center">
-                <form >
+            <div className="add-img-note flex direction-col align-center">
+                <form className="flex direction-col align-center" >
                     <input className="note-title" type="text" name="title" placeholder="Title" onChange={this.handleChange} />
-                    <img src={info.url} />
-                    <input type="text" name="url"
-                        placeholder="Type photo Url" onChange={this.handleChange} value={info.url} />
-                    <textarea placeholder="Take a note..." name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                    <img className="show-img" src={info.url} />
+                    <div className="add-img-link flex direction-row space-around">
+                        <img className="link-icon" src="../../../../img/icons/link.png" />
+                        <input type="text" name="url"
+                            placeholder="Type photo Url" onChange={this.handleChange} value={info.url} />
+                    </div>
+                    <textarea placeholder="Think of something?" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 </form>
 
                 <button className="save-note" onClick={this.onSaveNote}>Save Note</button>

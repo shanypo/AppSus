@@ -55,22 +55,22 @@ export class EditNoteVideo extends React.Component {
         const videosDisplay = this.state.videos
         const selectedVideo = this.state.selectedVideo
         const note = this.state.note
-        const classNote = `note ${note.style.backgroundColor}`
+        const classNote = `note-editor flex direction-col align-center ${note.style.backgroundColor}`
         return (
             <div className={classNote}>
-                <input value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
-                <form >
+                <input className="note-title" value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
+                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                <form className="flex direction-row align-center">
                     <input value={note.searchKey} type="text" name="searchKey"
                         placeholder="Search a YT video" onChange={this.handleChangeSearch} />
-                    <button onClick={this.onSearchVideo}>Search Video</button>
+                    <button onClick={this.onSearchVideo}><img id="buttom-seacrh-video" src="../../../img/icons/search-icon.png" /></button>
                 </form>
                 <section>
                     {videosDisplay.map((video, idx) =>
                         <VideoResult selectedVideo={selectedVideo} idx={idx} key={video.videoId} video={video} onSelectVideo={this.onSelectVideo} />
                     )}
                 </section>
-                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
-                <button onClick={this.onSaveNote}>Save Note</button>
+                <button className="save-note" onClick={this.onSaveNote}>Save Note</button>
             </div>
         )
     }

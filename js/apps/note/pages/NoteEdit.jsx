@@ -22,7 +22,7 @@ export class NoteEdit extends React.Component {
         const { note } = this.state
         return (
             <React.Fragment>
-                <div className='screen' onClick={(ev) => this.goBack(ev)} >
+                <div className='screen-editor' onClick={(ev) => this.goBack(ev)} >
                 </div>
                 <div className='editor'>
                     <h4>Edit your note</h4>

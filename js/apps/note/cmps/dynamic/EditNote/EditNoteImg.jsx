@@ -28,18 +28,21 @@ export class EditNoteImg extends React.Component {
     render() {
         const { note } = this.state
         if (note === null) return <div></div>
-        const classNote = `note ${note.style.backgroundColor}`
+        const classNote = `note-editor flex direction-col align-center ${note.style.backgroundColor}`
         return (
             <div className={classNote}>
-                <form >
-                    <input value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
+                <form className="flex direction-col align-center" >
+                    <input className="note-title" value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
                     <img src={note.info.url} />
-                    <input value={note.info.url} type="text" name="url"
-                        placeholder="Type photo Url" onChange={this.handleChange} />
+                    <div className="edit-add-img-link flex direction-row align-center ">
+                        <img className="link-icon" src="../../../../img/icons/link.png" />
+                        <input value={note.info.url} type="text" name="url"
+                            placeholder="Type photo Url" onChange={this.handleChange} />
+                    </div>
                     <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 </form>
 
-                <button onClick={this.onSaveNote}>Save Note</button>
+                <button className="save-note" onClick={this.onSaveNote}>Save Note</button>
             </div>
         )
     }

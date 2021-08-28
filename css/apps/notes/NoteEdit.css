@@ -1,6 +1,6 @@
 /* NOTE EDITOR */
 
-.screen {
+.screen-editor {
     position: fixed;
     top: 0;
     left: 0;
@@ -23,3 +23,82 @@
     min-width: 250px;
     background-color: white;
 }
+
+.editor h4 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* INPUTS DAFULT */
+
+.editor input:focus-visible, .editor textarea:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+.editor textarea {
+    max-width: 230px;
+    min-width: 230px;
+    min-height: 90px;
+    border: 0;
+    font-family: montserrat;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+/* SAVE BUTTOMS */
+
+.editor .save-note {
+    background-color: white;
+}
+
+.editor .save-note:hover {
+    color: #72A697;
+    background-color: #f6ffc5;
+}
+
+.editor .link-icon {
+    width: 25px;
+    object-fit: contain;
+}
+
+.editor .add-img-link {
+    margin-bottom: 15px;
+    width: 250px;
+}
+
+/* IMSIDE EDITOR GENERAL NOTE */
+
+.editor .note-title {
+    margin-top: 15px;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.note-editor {
+    border: 1px solid #80808096;
+    margin: 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.note-editor img {
+    width: 200px;
+    object-fit: cover;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.edit-add-img-link {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* SEARCH VIDEO */
+
+.note-editor #buttom-seacrh-video {
+    width: 25px;
+    object-fit: contain;
+}
+
+/* SEARCH ICONS  */

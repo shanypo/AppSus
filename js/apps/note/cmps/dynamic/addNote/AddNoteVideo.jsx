@@ -67,7 +67,7 @@ export class AddNoteVideo extends React.Component {
         return (
             <div className="add-video flex direction-col align-center" >
                 <input className="note-title" type="search" name="title" placeholder="Title" onChange={this.handleChange} />
-                <textarea value={note.info.txt} placeholder="Take a note..." name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                <textarea value={note.info.txt} placeholder="Think of something?" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
                 <section>
                     {videosDisplay.map((video, idx) =>
                         <VideoResult selectedVideo={selectedVideo} idx={idx} key={video.videoId} video={video} onSelectVideo={this.onSelectVideo} />

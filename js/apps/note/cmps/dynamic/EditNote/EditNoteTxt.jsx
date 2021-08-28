@@ -21,15 +21,17 @@ export class EditNoteTxt extends React.Component {
 
     render() {
         const { note } = this.state
-        const classNote = `note ${note.style.backgroundColor}`
+        const classNote = `add-note-txt flex direction-col ${note.style.backgroundColor}`
         return (
             <div className={classNote}>
-                <div>
-                    <label htmlFor="title">Title: </label>
-                    <input value={note.info.title} id="title" type="text" name="title" placeholder="title" onChange={this.handleChange} />
+                <div className="add-txt flex direction-col align-center">
+                    {/* <div className="flex direction-col align-center"> */}
+                    {/* <label htmlFor="title">Title: </label> */}
+                    <input className="note-title" value={note.info.title} id="title" type="text" name="title" placeholder="title" onChange={this.handleChange} />
+                    {/* </div> */}
+                    <textarea value={note.info.txt} name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                    <button className="save-note" onClick={this.onSaveNote}>Save Note</button>
                 </div>
-                <textarea value={note.info.txt} name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
-                <button onClick={this.onSaveNote}>Save Note</button>
             </div>
         )
     }

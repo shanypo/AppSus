@@ -1,24 +1,26 @@
 import { NotePreview } from './NotePreview.jsx'
 export function NoteList({ notes, onDeleteNote, onChangeColor, onPinNote }) {
     return (<React.Fragment>
-        <h3>Pinned</h3>
-        <section className='pinned note-list main-layout'>
-            {notes.map(note => {
-                if (note.isPinned) {
-                    return <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote}
-                        onChangeColor={onChangeColor} onPinNote={onPinNote} />
+        <section className="all-notes-display">
+            {/* <h3>Pinned</h3> */}
+            <section className='pinned note-list main-layout'>
+                {notes.map(note => {
+                    if (note.isPinned) {
+                        return <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote}
+                            onChangeColor={onChangeColor} onPinNote={onPinNote} />
+                    }
                 }
-            }
-            )}
-        </section>
-        <section className='note-list main-layout'>
-            {notes.map(note => {
-                if (!note.isPinned) {
-                    return <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote}
-                        onChangeColor={onChangeColor} onPinNote={onPinNote} />
+                )}
+            </section>
+            <section className='note-list main-layout'>
+                {notes.map(note => {
+                    if (!note.isPinned) {
+                        return <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote}
+                            onChangeColor={onChangeColor} onPinNote={onPinNote} />
+                    }
                 }
-            }
-            )}
+                )}
+            </section>
         </section>
     </React.Fragment>
     )

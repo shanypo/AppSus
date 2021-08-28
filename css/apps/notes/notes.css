@@ -1,23 +1,76 @@
+/* NOTES LIST */
+
 .pinned {
-    border: 2px solid gray;
+    border: 1px solid #bf6b3b73;
+    border-radius: 15px;
+    background-color: #bf6b3b1a;
     margin-bottom: 50px;
     padding: 15px;
 }
 
 .note-list {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    column-count: 5;
-    column-gap: 40px;
+    columns: 5 250px;
+    /* column-gap: 40px; */
 }
 
+/* IMSIDE GENERAL NOTE */
+
 .note {
+    break-inside: avoid-column;
     display: inline-block;
-    /* flex-direction: column; */
-    border: 1px solid black;
+    border: 1px solid #80808096;
+    margin: 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.note p, .note h3, .note h2 {
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+.note:hover {
+    box-shadow: 5px 5px 6px 0px #80808096;
+}
+
+.note img {
     width: 200px;
-    padding: 5px;
-    margin: 5px;
+    height: 180px;
+    object-fit: cover;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+/* NOTE TODOS */
+
+.done {
+    text-decoration: line-through;
+}
+
+/* NOTE BUTTOMS */
+
+.note .colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+
+.colors div {
+    border: 2px solid #80808096;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+
+.edit-buttoms img {
+    width: 25px;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 2px 0 rgb(214, 211, 211);
+    border-radius: 10px;
 }
 
 /* NOTE COLORS */
@@ -54,18 +107,19 @@
     background-color: #FDCFE8;
 }
 
-/* NOTE BUTTOMS */
+/* Mobile */
 
-.note:hover .note-buttoms {
-    opacity: 1;
-    transition: opacity .8s;
-}
+/*tablet*/
 
-.note-buttoms {
-    opacity: 0;
-    transition: opacity .8s;
-}
-
-.done {
-    text-decoration: line-through;
+@media screen and (min-width: 700px) {
+    /* NOTE BUTTOMS */
+    .note:hover .note-buttoms {
+        opacity: 1;
+        transition: opacity .8s;
+    }
+    .note-buttoms {
+        margin-top: 15px;
+        opacity: 0;
+        transition: opacity .8s;
+    }
 }
