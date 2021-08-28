@@ -8,7 +8,7 @@ class _AppHeader extends React.Component {
     return (
       <React.Fragment>
         <Link to="/"><div className="logo flex align-center pointer">
-          <img src="../../img/logo1.png" />
+          <img src="././img/logo1.png" />
         </div></Link>
         <ul className="main-nav clean-list">
           <li><NavLink exact to="/" activeClassName="active-nav" className="nav-home">Home</NavLink></li>
