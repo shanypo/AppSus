@@ -32,7 +32,7 @@ export class MailApp extends React.Component {
     }
 
     loadMails() {
-        const {criteria, display, txt, sortBy} = this.state;
+        const { criteria, display, txt, sortBy } = this.state;
         mailService.query(criteria)
             .then((mails) => {
                 this.setState({ mails })
@@ -73,6 +73,11 @@ export class MailApp extends React.Component {
         this.loadMails();
     }
 
+    onToggelRead = (mailId) => {
+        mailService.toggelRead(mailId);
+        this.loadMails();
+    }
+
     onDisplay = (val) => {
         this.setState((prevState) => ({ ...prevState, criteria: { ...prevState.criteria, display: val } }), () => {
             this.loadMails();
@@ -84,12 +89,10 @@ export class MailApp extends React.Component {
         if (!mails) return <div>Loading...</div>;
         return (
             <React.Fragment>
-                <section className="main-mail grid">
-                <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} criteria={criteria}/>
-                    <nav className="folders-nav">
-                        <NavBar className='nav-bar' countUnRead={countUnRead} />
-                    </nav>
-                    <MailList mails={mails} criteria={criteria} onToggelStar={this.onToggelStar} className="mail-list"/>
+                <section className="main-mail grid main-layout">
+                    <MailFilter displayVal={criteria.display} onDisplay={this.onDisplay} onSetFilter={this.onSetFilter} criteria={criteria} />
+                    <NavBar className='nav-bar' countUnRead={countUnRead} />
+                    <MailList mails={mails} criteria={criteria} onToggelRead={this.onToggelRead} onToggelStar={this.onToggelStar} className="mail-list" />
                 </section>
             </React.Fragment>
         )

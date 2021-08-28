@@ -36,7 +36,7 @@ export class MailFilter extends React.Component {
         const { txt, sortBy } = this.state;
         return (
             <section className="mail-criteria">
-                <label htmlFor="bySearch">Search</label>
+                <label className="search" htmlFor="bySearch"><img src="../../../../img/glass.svg" /></label>
                 <input type="text" id="bySearch" name="txt" value={txt} onChange={this.handleChange} />
                 <select name='display' value={displayVal} onChange={() => onDisplay(event.target.value)}>
                     <option value="all">All</option>

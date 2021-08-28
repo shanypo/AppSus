@@ -3,12 +3,32 @@
     position: absolute;
     bottom: 0;
     right: 0;
+    width: 50%;
+    text-align: left;
 }
 
 .compose-modal.close{
     display: none;
 }
 
-.background{
-    background-color: rebeccapurple;
+.send-btn{
+    color: #012615;
+    background-color: #BF6C3B;
+    font-family: cursive;
+    font-size: 1.8rem;
+}
+
+.body-text{
+    height: 40vh;
+}
+
+.close-btn{
+    background-color: #B8BEBF;
+    color: #bf6c3b;
+    font-weight: bold;
+}
+
+.font-inpot{
+    font-size: 1rem;
+    font-family: cursive;
 }

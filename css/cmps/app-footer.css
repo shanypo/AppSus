@@ -7,9 +7,13 @@ footer {
 
 footer p {
     color: white;
-    margin-bottom: 50px;
 }
 
 footer .logo {
     display: inline-block;
+}
+
+.main-footer{
+    height: 15vh;
+    justify-content: flex-end;
 }
