@@ -25,7 +25,7 @@ const dafultNotes = [
         info: {
             url: "././././img/panda.jpeg",
             title: 'Panda',
-            txt: 'this is my dog Panda and I her so much :)'
+            txt: 'this is my dog Panda and I love her so much :)'
         },
         style: {
             backgroundColor: 'purple'
@@ -140,7 +140,7 @@ const dafultNotes = [
         isPinned: true,
         info: {
             url: "././././img/panda2.jpeg",
-            title: 'Panda',
+            title: 'Panda traveling',
             txt: 'dogs are the best animals in the world'
         },
         style: {
