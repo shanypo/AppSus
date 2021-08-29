@@ -59,7 +59,7 @@ export class EditNoteVideo extends React.Component {
         return (
             <div className={classNote}>
                 <input className="note-title" value={note.info.title} type="text" name="title" placeholder="title" onChange={this.handleChange} />
-                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="10" onChange={this.handleChange}></textarea>
+                <textarea value={note.info.txt} placeholder="Type descrition" name="txt" cols="30" rows="6" onChange={this.handleChange}></textarea>
                 <form className="flex direction-row align-center">
                     <input value={note.searchKey} type="text" name="searchKey"
                         placeholder="Search a YT video" onChange={this.handleChangeSearch} />

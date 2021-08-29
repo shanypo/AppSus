@@ -6,8 +6,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* display: none; */
-    /* background-color: rgba(0, 0, 0, .5); */
     background-color: black;
     cursor: pointer;
     opacity: 0.5;
@@ -16,8 +14,7 @@
 }
 
 .editor {
-    position: fixed;
-    top: 25%;
+    position: absolute;
     left: 50%;
     transform: translate(-50%, 0%);
     min-width: 250px;
@@ -39,7 +36,7 @@
 .editor textarea {
     max-width: 230px;
     min-width: 230px;
-    min-height: 90px;
+    min-height: 50px;
     border: 0;
     font-family: montserrat;
     font-size: 0.85rem;
@@ -84,10 +81,18 @@
 
 .note-editor img {
     width: 200px;
-    height: 180px;
+    /* height: 180px; */
     object-fit: cover;
     margin-left: 9px;
     margin-right: 9px;
+}
+
+.edit-note-link-icon {
+    height: 25px;
+}
+
+.editor-display-image {
+    height: 180px;
 }
 
 .edit-add-img-link {
