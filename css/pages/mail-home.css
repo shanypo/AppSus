@@ -61,8 +61,15 @@
 }
 
 .mail-read {
+    display: inline;
     width: 15px;
 }
+
+/* .mail-read{
+    display: none;
+} */
+
+
 
 @media screen and (min-width: 700px) {
     .main-mail {

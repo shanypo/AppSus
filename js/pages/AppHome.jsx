@@ -30,7 +30,7 @@ export class AppHome extends React.Component {
             <Router>
                 <div className={bodyClass}>
                     <div onClick={this.onMenuClick} className="screen pointer" ></div>
-                    <header className="main-header main-layout flex direction-row align-center space-between theme-color">
+                    <header className="main-header flex direction-row align-center space-between theme-color">
                         <AppHeader onMenuClick={this.onMenuClick} />
                     </header>
                     <main className="main-layout">
@@ -45,7 +45,7 @@ export class AppHome extends React.Component {
                             <Route component={Home} path="/" />
                         </Switch>
                     </main>
-                    <footer className="main-footer main-layout flex direction-col justify-center theme-color">
+                    <footer className="main-footer flex direction-col justify-center theme-color">
                         <AppFooter />
                     </footer>
                 </div>

@@ -16,4 +16,7 @@ footer .logo {
 .main-footer{
     height: 15vh;
     justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
