@@ -42,7 +42,6 @@ button, li {
 
 .main-layout {
     /* min-width: 350px; */
-    /* margin: 0 20px; */
 }
 
 /*tablet*/
@@ -50,6 +49,7 @@ button, li {
 @media screen and (min-width: 700px) {
     .main-layout {
         min-width: 690px;
+        margin: 0 20px;
     }
 }
 
