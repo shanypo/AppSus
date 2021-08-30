@@ -41,7 +41,7 @@ button, li {
 /*mobile*/
 
 .main-layout {
-    min-width: 350px;
+    /* min-width: 350px; */
     margin: 0 20px;
 }
 

@@ -14,9 +14,14 @@
 }
 .mail-preview a{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     margin: 0 13px;
+}
+
+.mail-preview a > p{
+    margin: 0;
 }
 
 .mail-readen{
@@ -38,6 +43,9 @@
 @media screen and (min-width: 700px) {
     .mail-preview{
         font-size: 0.85rem;
+    }
+    .mail-preview a{
+        flex-direction: unset;
     }
   
 }

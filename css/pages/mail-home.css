@@ -18,6 +18,10 @@
     animation: tada 1s;
 }
 
+.folders-nav{
+    align-items: baseline;
+}
+
 .folders {
     flex-direction: column;
     align-items: center;
@@ -27,6 +31,8 @@
     display: flex;
     align-items: center;
     gap: 2px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .count-read {
